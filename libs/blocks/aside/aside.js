@@ -15,7 +15,7 @@
 */
 
 import { decorateBlockText, decorateIconStack, applyHoverPlay, decorateBlockBg } from '../../utils/decorate.js';
-import { createTag } from '../../utils/utils.js';
+import { createTag, loadStyle } from '../../utils/utils.js';
 
 // standard/default aside uses same text sizes as the split
 const variants = ['split', 'inline', 'notification'];
@@ -209,11 +209,18 @@ function decorateLayout(el) {
   return foreground;
 }
 
-export default function init(el) {
+export default async function init(el) {
   el.classList.add('con-block');
   const blockData = getBlockData(el);
   const blockText = decorateLayout(el);
   decorateBlockText(blockText, blockData);
   decorateStaticLinks(el);
   formatPromoButton(el);
+  loadStyle(`/libs/deps/dist/style.css`);
+  const unity = await import('/libs/deps/dist/unityEditor.js');
+    setTimeout(() => {
+      let editor = new unity.VectorEditor(el.querySelector('.image picture'), {
+        editorMode: 'standalone',
+      });
+    }, 500);
 }

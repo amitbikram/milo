@@ -15,6 +15,33 @@ const blockTypeSizes = {
   },
 };
 
+const workflow = [
+  {
+    type: "removebg",
+    experience: "mock",
+    next: "changebg",
+    options: ["/drafts/sarangi/pepc/media_178b224dc874fddd314c8e94c92e50e0bce24dcf5.png"],
+  },
+  {
+    type: "changebg",
+    noInitial: true,
+    experience: "mock",
+    options: ["/drafts/sarangi/pepc/media_1f3e91c7f59dd1ddfd9bdec08729d09f7570134e2.png", "/drafts/sarangi/pepc/media_11a464f445e62b8e8b84cffea80eee307edce246f.jpeg"],
+  },
+  {
+    type: "filters",
+    experience: "mock",
+    options: ["hue", "saturation", "brightness"],
+  },
+  {
+    type: "upload",
+  },
+  {
+    type: "connector",
+    noInitial: true,
+  },
+];
+
 function decorateText(el, size) {
   const headings = el.querySelectorAll('h1, h2, h3, h4, h5, h6');
   const heading = headings[headings.length - 1];
@@ -134,4 +161,26 @@ export default async function init(el) {
   if (el.classList.contains('mnemonic-list') && foreground) {
     await loadMnemonicList(foreground);
   }
+
+  loadStyle(`/libs/deps/dist/style.css`);
+  const unity = await import('/libs/deps/dist/unityEditor.js');
+
+    if(media.querySelector('picture')) {
+      setTimeout(() => {
+        let editor = new unity.Editor(media, {
+          editorMode: 'mount',
+          workflow
+        });
+      }, 500);
+    }
+
+    if(el.querySelector('a[data-video-poster]')) {
+      el.querySelector('.foreground.container').style.display = 'none';
+      setTimeout(() => {
+        let editor = new unity.VideoEditor(el.querySelector('video'), {
+          editorMode: 'mount',
+          basePath: '/libs/deps/dist',
+        });
+      }, 500);
+    }
 }

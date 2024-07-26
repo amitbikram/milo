@@ -1,6 +1,6 @@
-var rt = Object.defineProperty;
-var ot = (a, t, e) => t in a ? rt(a, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : a[t] = e;
-var r = (a, t, e) => (ot(a, typeof t != "symbol" ? t + "" : t, e), e);
+var Q = Object.defineProperty;
+var tt = (s, t, e) => t in s ? Q(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
+var c = (s, t, e) => (tt(s, typeof t != "symbol" ? t + "" : t, e), e);
 class W {
   static init() {
     return new W();
@@ -40,181 +40,16 @@ class W {
     }), t.renderAll();
   }
 }
-const ct = `<div class="menu">
-  <div class="hue-sat-title">
-    <div class="hue-sat-title-icon">
-      <div class="svgicon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          version="1.1"
-          id="Layer_1"
-          x="0px"
-          y="0px"
-          height="8"
-          viewBox="0 0 122.88 66.91"
-          style="enable-background: new 0 0 122.88 66.91"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M11.68,1.95C8.95-0.7,4.6-0.64,1.95,2.08c-2.65,2.72-2.59,7.08,0.13,9.73l54.79,53.13l4.8-4.93l-4.8,4.95 c2.74,2.65,7.1,2.58,9.75-0.15c0.08-0.08,0.15-0.16,0.22-0.24l53.95-52.76c2.73-2.65,2.79-7.01,0.14-9.73 c-2.65-2.72-7.01-2.79-9.73-0.13L61.65,50.41L11.68,1.95L11.68,1.95z"
-            ></path>
-          </g>
-        </svg>
-      </div>
-      <div>Edit Hue/Sat</div>
-    </div>
-    <div class="slider-svg">
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 27 27"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M3.14059 9.43079H6.57362C7.01183 11.2706 8.65925 12.6468 10.631 12.6468C12.6028 12.6468 14.2502 11.2706 14.6884 9.43079H24.3663C24.899 9.43079 25.3311 8.99863 25.3311 8.46598C25.3311 7.93333 24.899 7.50118 24.3663 7.50118H14.6884C14.2502 5.66138 12.6028 4.28516 10.631 4.28516C8.65925 4.28516 7.01181 5.66138 6.57362 7.50118H3.14059C2.60794 7.50118 2.17578 7.93333 2.17578 8.46598C2.17578 8.99863 2.60794 9.43079 3.14059 9.43079ZM10.631 6.21477C11.8722 6.21477 12.8822 7.2248 12.8822 8.46598C12.8822 9.70716 11.8722 10.7172 10.631 10.7172C9.38984 10.7172 8.3798 9.70716 8.3798 8.46598C8.3798 7.2248 9.38984 6.21477 10.631 6.21477Z"
-          fill="#292929"
-        ></path>
-        <path
-          d="M24.3663 17.7922H21.1205C20.6823 15.9524 19.0348 14.5762 17.0631 14.5762C15.0913 14.5762 13.4439 15.9524 13.0057 17.7922H3.14059C2.60794 17.7922 2.17578 18.2243 2.17578 18.757C2.17578 19.2896 2.60794 19.7218 3.14059 19.7218H13.0057C13.4439 21.5616 15.0913 22.9378 17.0631 22.9378C19.0348 22.9378 20.6823 21.5616 21.1205 19.7218H24.3663C24.899 19.7218 25.3311 19.2896 25.3311 18.757C25.3311 18.2243 24.899 17.7922 24.3663 17.7922ZM17.0631 21.0082C15.8219 21.0082 14.8118 19.9982 14.8118 18.757C14.8118 17.5158 15.8219 16.5058 17.0631 16.5058C18.3042 16.5058 19.3143 17.5158 19.3143 18.757C19.3143 19.9982 18.3042 21.0082 17.0631 21.0082Z"
-          fill="#292929"
-        ></path>
-      </svg>
-    </div>
-  </div>
-  <label for="hue">Hue</label>
-  <div class="sliderContainer hue">
-    <input
-      id="hue-value"
-      type="range"
-      min="-2"
-      max="2"
-      class="options hue-input"
-      value="0"
-      step="0.002"
-    />
-  </div>
-  <label for="saturation">Saturation</label>
-  <div class="sliderContainer saturation">
-    <input
-      type="range"
-      min="-1"
-      max="1"
-      id="saturation-value"
-      class="options saturation-input"
-      value="0"
-      step="0.003921"
-    />
-  </div>
-  <label for="saturation">Contrast</label>
-  <div class="sliderContainer saturation">
-    <input
-      id="contrast-value"
-      type="range"
-      min="-1"
-      max="1"
-      class="options saturation-input"
-      value="0"
-      step="0.003921"
-    />
-  </div>
-  <label for="saturation">Brightness</label>
-  <div class="sliderContainer saturation">
-    <input
-      id="brightness-value"
-      type="range"
-      min="-1"
-      max="1"
-      class="options saturation-input"
-      value="0.1"
-      step="0.003921"
-    />
-  </div>
-</div>`, lt = `<div class="menu">
-<div id="placeholder"></div>
-<div class="debug" style="display: flex">
-    <img style="width:100px" id="previewImage" class="preview-image" />
-    <img style="width:100px" id="previewMaskImage" class="preview-image" />
-</div></div>`, dt = `<div class="menu">
-  <div class="hue-sat-title">
-    <div class="hue-sat-title-icon">
-      <div class="svgicon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          version="1.1"
-          id="Layer_1"
-          x="0px"
-          y="0px"
-          height="8"
-          viewBox="0 0 122.88 66.91"
-          style="enable-background: new 0 0 122.88 66.91"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M11.68,1.95C8.95-0.7,4.6-0.64,1.95,2.08c-2.65,2.72-2.59,7.08,0.13,9.73l54.79,53.13l4.8-4.93l-4.8,4.95 c2.74,2.65,7.1,2.58,9.75-0.15c0.08-0.08,0.15-0.16,0.22-0.24l53.95-52.76c2.73-2.65,2.79-7.01,0.14-9.73 c-2.65-2.72-7.01-2.79-9.73-0.13L61.65,50.41L11.68,1.95L11.68,1.95z"
-            ></path>
-          </g>
-        </svg>
-      </div>
-      <div>Change Background</div>
-    </div>
-    <div class="slider-svg">
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 27 26"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g id="Frame" clip-path="url(#clip0_1530_17792)">
-          <path
-            id="iconPrimary"
-            d="M19.5428 9.72746C19.5428 10.7932 18.6789 11.6571 17.6132 11.6571C16.5475 11.6571 15.6836 10.7932 15.6836 9.72746C15.6836 8.66176 16.5475 7.79785 17.6132 7.79785C18.6789 7.79785 19.5428 8.66176 19.5428 9.72746Z"
-            fill="#292929"
-          />
-          <path
-            id="iconPrimary_2"
-            d="M20.1873 13.5615C16.9902 13.5615 14.3984 16.1533 14.3984 19.3504C14.3984 22.5475 16.9902 25.1392 20.1873 25.1392C23.3844 25.1392 25.9761 22.5475 25.9761 19.3504C25.9761 16.1533 23.3844 13.5615 20.1873 13.5615ZM23.4033 20.1544H20.9913V22.5664C20.9913 23.0098 20.6307 23.3704 20.1873 23.3704C19.7438 23.3704 19.3833 23.0098 19.3833 22.5664V20.1544H16.9713C16.5278 20.1544 16.1672 19.7938 16.1672 19.3504C16.1672 18.9069 16.5278 18.5464 16.9713 18.5464H19.3833V16.1343C19.3833 15.6909 19.7438 15.3303 20.1873 15.3303C20.6307 15.3303 20.9913 15.6909 20.9913 16.1343V18.5464H23.4033C23.8468 18.5464 24.2073 18.9069 24.2073 19.3504C24.2073 19.7938 23.8468 20.1544 23.4033 20.1544Z"
-            fill="#292929"
-          />
-          <path
-            id="iconPrimary_3"
-            d="M22.4367 3.91408H5.0702C3.47476 3.91408 2.17578 5.21305 2.17578 6.80849V19.0294C2.17578 20.6248 3.47476 21.9238 5.0702 21.9238H11.6178C12.1505 21.9238 12.5826 21.4916 12.5826 20.959C12.5826 20.4263 12.1505 19.9942 11.6178 19.9942H5.0702C4.5388 19.9942 4.10539 19.5608 4.10539 19.0294V17.5256L7.92568 13.7066C8.30256 13.3297 8.9131 13.3297 9.28998 13.7066L11.7535 16.1701C12.1304 16.547 12.7409 16.547 13.1178 16.1701C13.4947 15.7932 13.4947 15.1827 13.1178 14.8058L10.6543 12.3423C9.52616 11.2142 7.68951 11.2142 6.56139 12.3423L4.10541 14.7976V6.80848C4.10541 6.27708 4.53881 5.84367 5.07021 5.84367H22.4367C22.9681 5.84367 23.4015 6.27708 23.4015 6.80848V11.7569C23.4015 12.2895 23.8337 12.7217 24.3663 12.7217C24.899 12.7217 25.3311 12.2895 25.3311 11.7569V6.80848C25.3311 5.21304 24.0321 3.91408 22.4367 3.91408Z"
-            fill="#292929"
-          />
-        </g>
-        <defs>
-          <clipPath id="clip0_1530_17792">
-            <rect
-              width="25.7282"
-              height="25.7282"
-              fill="white"
-              transform="translate(0.890625 0.0546875)"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
-  </div>
-  <div class="bg-tiles">
-    <button><img height="90px" src="./preview-1.png" /></button>
-    <button><img height="90px" src="./preview-2.png" /></button>
-  </div>
-</div>`;
-function P(a) {
-  return window.getComputedStyle(a).getPropertyValue("position") === "static";
+function H(s) {
+  return window.getComputedStyle(s).getPropertyValue("position") === "static";
 }
-function ht(a, t, e) {
+function et(s, t, e) {
   const i = document.createElement("canvas");
-  return i.id = e, i.height = a, i.width = t, i;
+  return i.id = e, i.height = s, i.width = t, i;
 }
-class m {
+class u {
   constructor() {
-    r(this, "forward", (t) => {
+    c(this, "forward", (t) => {
       this.listeners.length > 0 && this.listeners.forEach((e) => e(t));
     });
     this.listeners = [];
@@ -233,9 +68,9 @@ class m {
     return this.listeners.length;
   }
 }
-class pt {
+class it {
   constructor(t, e) {
-    this.canvas = t, this.configuration = e, this.onModeChanged = new m(), this.onLayerOrderChanged = new m(), this.onPropertiesChanged = new m();
+    this.canvas = t, this.configuration = e, this.onModeChanged = new u(), this.onLayerOrderChanged = new u(), this.onPropertiesChanged = new u();
   }
   add(t) {
     this.canvas.add(t), this.canvas.requestRenderAll();
@@ -253,13 +88,13 @@ class pt {
     const t = /* @__PURE__ */ new Map();
     return this.forEachObject((e) => {
       t.set(e, e.selectable), e.selectable && e.set("selectable", !1);
-    }), new gt(t);
+    }), new at(t);
   }
   setMode(t) {
     this.mode = t, this.onModeChanged.forward(t);
   }
 }
-class gt {
+class at {
   constructor(t) {
     this.map = t;
   }
@@ -267,155 +102,28 @@ class gt {
     this.map.forEach((t, e) => e.set("selectable", t));
   }
 }
-class w {
-  static attrs(t, e) {
-    Object.keys(e).forEach((i) => {
-      const s = e[i];
-      t.setAttribute(i, typeof s == "string" ? s : s.toString());
-    });
-  }
-  static element(t, e) {
-    const i = document.createElement(t);
-    return e && w.attrs(i, e), i;
-  }
-  static div(t) {
-    return w.element("div", t);
-  }
-}
-const X = "http://www.w3.org/2000/svg";
-class c {
-  static createSvg(t, e) {
-    const i = document.createElementNS(X, "svg");
-    i.setAttribute("viewBox", "0 -960 960 960"), i.setAttribute("height", "18"), i.classList.add(e);
-    const s = document.createElementNS(X, "path");
-    return s.setAttribute("d", t), i.appendChild(s), i;
-  }
-}
-r(c, "cursor", "m320-410 79-110h170L320-716v306ZM551-80 406-392 240-160v-720l560 440H516l144 309-109 51ZM399-520Z"), r(c, "rect", "M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0 0v-560 560Z"), r(c, "eye", "M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"), r(c, "eyeOff", "m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"), r(c, "locked", "M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"), r(c, "close", "m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"), r(c, "text", "M420-160v-520H200v-120h560v120H540v520H420Z"), r(c, "image", "M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"), r(c, "brush", "M240-120q-45 0-89-22t-71-58q26 0 53-20.5t27-59.5q0-50 35-85t85-35q50 0 85 35t35 85q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T320-280q0-17-11.5-28.5T280-320q-17 0-28.5 11.5T240-280q0 23-5.5 42T220-202q5 2 10 2h10Zm230-160L360-470l358-358q11-11 27.5-11.5T774-828l54 54q12 12 12 28t-12 28L470-360Zm-190 80Z"), r(c, "erase", "M690-240h190v80H610l80-80Zm-500 80-85-85q-23-23-23.5-57t22.5-58l440-456q23-24 56.5-24t56.5 23l199 199q23 23 23 57t-23 57L520-160H190Zm296-80 314-322-198-198-442 456 64 64h262Zm-6-240Z"), r(c, "arrowUp", "M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"), r(c, "arrowDown", "M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"), r(c, "menu", "M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z");
-function F(a, t, e) {
-  const i = new m(), s = w.element("span", {
-    class: `icon-button icon-button-${e}`,
-    title: t
-  }), n = c.createSvg(a, "icon-button-icon"), o = n.querySelector("path");
-  return s.appendChild(n), s.addEventListener(
-    "click",
-    (h) => {
-      h.preventDefault(), h.stopPropagation(), i.forward();
-    },
-    !1
-  ), {
-    view: s,
-    onClicked: i,
-    setIcon(h) {
-      o.setAttribute("d", h);
-    }
-  };
-}
-class _ {
-  constructor(t, e, i, s, n) {
-    r(this, "onItemClicked", (t) => {
-      t.preventDefault(), t.stopPropagation(), this.state.selectObject(this.object);
-    });
-    r(this, "onVisibilityClicked", () => {
-      this.object.selectable && this.object.visible ? (this.object.visible = !0, this.object.selectable = !1, this.state.canvas.getActiveObject() === this.object && this.state.canvas.discardActiveObject()) : this.object.visible && !this.object.selectable ? (this.object.visible = !1, this.object.selectable = !0) : (this.object.visible = !0, this.object.selectable = !0), this.visibilityButton.setIcon(Y(this.object)), this.state.canvas.requestRenderAll(), this.state.onPropertiesChanged.forward(this.object);
-    });
-    r(this, "onMoveUpClicked", () => {
-      this.state.canvas.bringForward(this.object), this.state.onLayerOrderChanged.forward();
-    });
-    r(this, "onMoveDownClicked", () => {
-      this.state.canvas.sendBackwards(this.object), this.state.onLayerOrderChanged.forward();
-    });
-    r(this, "onDeleteClicked", () => {
-      this.state.canvas.remove(this.object);
-    });
-    r(this, "onLabelChanged", () => {
-      this.object.set("label", this.labelInput.value), this.state.onPropertiesChanged.forward(this.object);
-    });
-    this.isSelected = !1, this.view = t, this.state = e, this.object = i, this.labelInput = s, this.visibilityButton = n;
-  }
-  static create(t, e, i, s) {
-    const n = document.createElement("div");
-    n.className = "layers-panel-item";
-    const o = F(Y(e), "Toggle visibility", "sm"), h = F(c.close, "Delete layer", "sm");
-    let p, g;
-    const q = w.div({
-      class: "layers-panel-item-label"
-    }), C = w.element("div", {
-      class: "layers-panel-item-label-input"
-    });
-    C.innerHTML = e.get("label") ?? e.type, q.appendChild(C), n.appendChild(o.view), n.appendChild(q), p = F(c.arrowUp, "Move layer up", "sm"), n.appendChild(p.view), g = F(c.arrowDown, "Move layer down", "sm"), n.appendChild(g.view), n.appendChild(h.view);
-    const f = new _(n, t, e, C, o);
-    return n.addEventListener("click", f.onItemClicked, !1), C.addEventListener("input", f.onLabelChanged, !1), o.onClicked.subscribe(f.onVisibilityClicked), p == null || p.onClicked.subscribe(f.onMoveUpClicked), g == null || g.onClicked.subscribe(f.onMoveDownClicked), h.onClicked.subscribe(f.onDeleteClicked), f;
-  }
-  setIsSelected(t) {
-    this.isSelected = t, this.labelInput.readOnly = !t, this.view.classList.toggle("selected", t);
-  }
-}
-function Y(a) {
-  if (!a.selectable) {
-    if (!a.visible)
-      throw new Error("Unsupported state");
-    return c.locked;
-  }
-  return a.visible ? c.eye : c.eyeOff;
-}
-function vt(a, t) {
-  const e = w.div({
-    class: "menu"
-  }), i = w.div({
-    class: "hue-sat-title"
-  }), s = w.div({
-    class: "hue-sat-title-icon"
-  });
-  s.innerText = a, i.appendChild(s);
-  const n = w.div({
-    class: "panel-body"
-  });
-  return n.className = "panel-body", n.appendChild(t), e.appendChild(i), e.appendChild(n), { view: e };
-}
-class D {
-  constructor(t, e, i) {
-    r(this, "reloadList", () => {
-      for (; this.list.firstChild; )
-        this.list.removeChild(this.list.firstChild);
-      this.state.forEachObject((t, e, i) => {
-        const s = e === 0, n = _.create(this.state, t, s, i);
-        this.layers.push(n), this.list.firstChild ? this.list.insertBefore(n.view, this.list.firstChild) : this.list.appendChild(n.view);
-      }), this.reloadSelection();
-    });
-    r(this, "reloadSelection", () => {
-      const t = this.state.canvas.getActiveObjects();
-      for (const e of this.layers)
-        e.setIsSelected(t.includes(e.object));
-    });
-    this.view = t, this.state = e, this.list = i, this.layers = [];
-  }
-  static create(t) {
-    const e = document.createElement("div");
-    e.className = "layers-list";
-    const i = vt("Layers", e), s = new D(i.view, t, e);
-    return t.canvas.on("object:added", s.reloadList), t.canvas.on("object:removed", s.reloadList), t.canvas.on("selection:cleared", s.reloadSelection), t.canvas.on("selection:created", s.reloadSelection), t.canvas.on("selection:updated", s.reloadSelection), t.onLayerOrderChanged.subscribe(s.reloadList), s.reloadList(), s;
-  }
-}
-class ut {
+class st {
   constructor(t) {
-    r(this, "enableBG", () => {
+    c(this, "enableBG", () => {
       this.menuBar.querySelector(".remove-bg").classList.add("hide"), this.menuBar.querySelector(".change-bg-wrapper").classList.remove("hide");
     });
-    r(this, "enableConnector", () => {
+    c(this, "reset", () => {
+      this.menuBar.querySelector(".remove-bg").classList.remove("hide"), this.menuBar.querySelector(".change-bg-wrapper").classList.add("hide");
+    });
+    c(this, "enableConnector", () => {
       this.menuBar.querySelector(".app-connector").classList.remove("hide");
     });
-    r(this, "loadBGImages", (t) => {
+    c(this, "loadBGImages", (t) => {
       const e = this.workflow[t];
       if (e.experience === "mock") {
         let i = "";
-        for (let s = 0; s < e.options.length; s++)
-          i += `<div><img height="68" src="${e.options[s]}" /></div>`;
+        for (let a = 0; a < e.options.length; a++)
+          i += `<div><img height="68" src="${e.options[a]}" /></div>`;
         return i;
       }
       return "";
     });
-    r(this, "removebg", (t) => {
+    c(this, "removebg", (t) => {
       this.menuBar.insertAdjacentHTML("beforeend", `<button class="remove-bg">
             <img src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/removebg.svg">
             <span>Remove Background</span>
@@ -423,23 +131,23 @@ class ut {
         this.removebgEvent.forward();
       });
     });
-    r(this, "changebg", (t) => {
+    c(this, "changebg", (t) => {
       let e = "";
       this.workflow[t].noInitial === !0 && (e = "hide");
-      const s = `<div class="button-wrapper change-bg-wrapper ${e}"><button class="change-bg">
+      const a = `<div class="button-wrapper change-bg-wrapper ${e}"><button class="change-bg">
             <img src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/changebg.svg">
             <span>Change Background</span>
         </button>
         <div class="button-panel changebg-panel hide">
             ${this.loadBGImages(t)}
         </div></div>`;
-      this.menuBar.insertAdjacentHTML("beforeend", s), this.menuBar.querySelector(".button-panel").addEventListener("click", (n) => {
+      this.menuBar.insertAdjacentHTML("beforeend", a), this.menuBar.querySelector(".button-panel").addEventListener("click", (n) => {
         n.target.tagName === "IMG" && this.changebgEvent.forward(n.target.src);
       }), this.menuBar.querySelector(".change-bg").addEventListener("click", () => {
         this.menuBar.querySelector(".changebg-panel").classList.toggle("hide");
       });
     });
-    r(this, "upload", (t) => {
+    c(this, "upload", (t) => {
       this.menuBar.insertAdjacentHTML("beforeend", `<button class="upload">
             <img src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/upload.svg">
             <span>Upload image</span>
@@ -447,16 +155,24 @@ class ut {
         this.uploadEvent.forward();
       });
     });
-    r(this, "connector", (t) => {
+    c(this, "mask", (t) => {
+      this.menuBar.insertAdjacentHTML("beforeend", `<button class="mask">
+            <img src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/upload.svg">
+            <span>Mask</span>
+        </button>`), this.menuBar.querySelector(".mask").addEventListener("click", () => {
+        this.maskEvent.forward();
+      });
+    });
+    c(this, "connector", (t) => {
       let e = "";
       this.workflow[t].noInitial === !0 && (e = "hide");
-      const s = `<button class="app-connector ${e}">
-            <span>Contine in app</span>
+      const a = `<button class="app-connector ${e}">
+            <span>Continue in app</span>
             <img height="33" src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/ps.svg">
         </button>`;
-      this.menuBar.insertAdjacentHTML("beforeend", s);
+      this.menuBar.insertAdjacentHTML("beforeend", a);
     });
-    r(this, "filters", (t) => {
+    c(this, "filters", (t) => {
       this.menuBar.insertAdjacentHTML("beforeend", `<div class="button-wrapper"><button class="image-filter">
             <img src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/huesat.svg">
             <span>Edit Hue/Sat</span>
@@ -490,7 +206,7 @@ class ut {
         this.menuBar.querySelector(".image-filter-panel").classList.toggle("hide");
       });
     });
-    this.workflow = t, this.menuBar = document.createElement("div"), this.menuBar.classList.add("menu-bar"), this.removebgEvent = new m(), this.changebgEvent = new m(), this.uploadEvent = new m(), this.enableChangeBG = new m(), this.canvasLoaded = new m(), this.hueFilter = new m(), this.satFilter = new m(), this.enableChangeBG.subscribe(this.enableBG), this.canvasLoaded.subscribe(this.enableConnector);
+    this.workflow = t, this.menuBar = document.createElement("div"), this.menuBar.classList.add("menu-bar"), this.removebgEvent = new u(), this.changebgEvent = new u(), this.uploadEvent = new u(), this.maskEvent = new u(), this.enableChangeBG = new u(), this.resetButton = new u(), this.canvasLoaded = new u(), this.hueFilter = new u(), this.satFilter = new u(), this.enableChangeBG.subscribe(this.enableBG), this.resetButton.subscribe(this.reset), this.canvasLoaded.subscribe(this.enableConnector);
   }
   initControls() {
     for (let t = 0; t < this.workflow.length; t++) {
@@ -508,160 +224,249 @@ class ut {
     });
   }
 }
-function mt() {
-  return new Promise((a) => {
+function nt() {
+  return new Promise((s) => {
     const t = document.createElement("input");
     t.type = "file", t.accept = "image/*", t.addEventListener("change", () => {
       if (t.files && t.files.length > 0) {
         const e = t.files[0], i = new FileReader();
         i.onload = () => {
-          a(i.result);
+          s(i.result);
         }, i.readAsDataURL(e);
       } else
-        a(null);
+        s(null);
     }), t.click();
   });
 }
-const ft = {
+const rt = function({ default: { fabric: s } }) {
+  console.log(s), window.fabric = s, s.Image.filters.BlendImage.prototype.mode = "mask", s.Image.fromURL(
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NgYGD4DwABBAEAcCBlCwAAAABJRU5ErkJggg==",
+    function(t) {
+      s.Image.filters.BlendImage.prototype.image = t;
+    }
+  ), s.Image.filters.BlendImage.prototype.fragmentSource.mask = `
+            precision highp float;
+            uniform sampler2D uTexture;
+            uniform sampler2D uImage;
+            uniform vec4 uColor;
+            varying vec2 vTexCoord;
+            varying vec2 vTexCoord2;
+    
+            void main() {
+                vec4 color = texture2D(uTexture, vTexCoord);
+                vec4 color2 = texture2D(uImage, vTexCoord2);
+                color.a *= color2.a;
+                gl_FragColor = color;
+            }`, s.MaskBrush = s.util.createClass(s.PencilBrush, {
+    initialize: function(t) {
+      this.canvas = t.canvas, this.width = t.width, this.target = t.target, this.shadow = t.shadow, this.blur = t.blur, this.color = t.color, this.targetMaskFilter = t.targetMaskFilter, this.mode = t.mode ? t.mode : "source-out", this._points = [];
+    },
+    _saveAndTransform: function(t) {
+      var e = this, i = this.canvas.viewportTransform;
+      t.save(), t.transform(i[0], i[1], i[2], i[3], i[4], i[5]), t.filter = e.blur ? "blur(" + e.blur + "px)" : "none";
+    },
+    _finalizeAndAddPath: function() {
+      var t = this, e = this.canvas.contextTop;
+      e.closePath(), this.decimate && (this._points = this.decimatePoints(this._points, this.decimate));
+      var i = this.convertPointsToSVGPath(this._points).join("");
+      if (i === "M 0 0 Q 0 0 0 0 L 0 0") {
+        this.canvas.requestRenderAll();
+        return;
+      }
+      var a = this.target.getBoundingRect(), n = this.canvas.contextTop.getImageData(
+        a.left,
+        a.top,
+        a.width,
+        a.height
+      ), r = document.createElement("canvas"), l = r.getContext("2d");
+      if (r.width = a.width, r.height = a.height, !t.targetMaskFilter.image) {
+        l.fillRect(0, 0, r.width, r.height), s.Image.fromURL(r.toDataURL(), function(o) {
+          t.targetMaskFilter.image = o, t.target.applyFilters(), t.canvas.requestRenderAll(), t._finalizeAndAddPath();
+        });
+        return;
+      }
+      l.putImageData(n, 0, 0), t.targetMaskFilter.image && (l.globalCompositeOperation = t.mode, l.drawImage(
+        t.targetMaskFilter.image.getElement(),
+        0,
+        0,
+        r.width,
+        r.height
+      )), s.Image.fromURL(r.toDataURL(), function(o) {
+        t.targetMaskFilter.image = o, t.target.applyFilters(), t.canvas.requestRenderAll();
+      }), this.canvas.clearContext(this.canvas.contextTop), this.canvas.requestRenderAll(), this._resetShadow();
+    }
+  });
+}, ot = {
   editorMode: "mount"
   // 'standalone' | 'mount'
 };
-function K(a, t) {
-  const e = document.createElement("canvas");
-  e.width = a, e.height = t;
-  const i = e.getContext("2d");
-  return i.fillStyle = "#ffffff00", i.fillRect(0, 0, a, t), [e, i];
+async function ct(s, t) {
+  if ((await fetch(s, {
+    method: "PUT",
+    headers: { "Content-Type": "image/jpeg" },
+    body: t
+  })).status !== 200)
+    throw "Failed to upload to s3!!";
 }
-function wt(a, t, e, i) {
-  const s = e.getImageData(0, 0, a, t), n = i.getImageData(0, 0, a, t);
-  for (let o = 0; o < s.data.length; o += 4)
-    s.data[o + 3] = 255 - n.data[o + 3];
-  e.putImageData(s, 0, 0);
+function _() {
+  return `Bearer ${window.adobeIMS.getAccessToken().token}`;
 }
-class Bt {
+class St {
   constructor(t, e = {}) {
-    r(this, "onAnyChange", () => {
+    c(this, "loaderEnable", () => {
+      this.container.querySelector(".lds-ring").classList.remove("hide");
+    });
+    c(this, "loaderDisable", () => {
+      this.container.querySelector(".lds-ring").classList.add("hide");
+    });
+    c(this, "onAnyChange", () => {
       this.onChanged.forward();
     });
-    r(this, "removebg", async () => {
-      await this.ondemandLoad();
-      const t = this.config.workflow.find((e) => e.type === "removebg");
-      if (t.experience === "mock") {
-        const e = t.options[0];
-        fabric.Image.fromURL(e, (i) => {
-          const s = {
-            width: i.width,
-            height: i.height,
-            selectable: !1
-          }, n = Math.min(this.width / i.width, this.height / i.height);
-          s.left = (this.width - i.width * n) / 2, s.top = (this.height - i.height * n) / 2, s.scaleX = n, s.scaleY = n, i.set(s), this.canvas.add(i), t.next === "changebg" && this.controlManager.enableChangeBG.forward();
-        });
+    c(this, "removebg", async () => {
+      this.loaderEnable(), await this.ondemandLoad();
+      let t = null;
+      const e = this.config.workflow.find((i) => i.type === "removebg");
+      if (e.experience)
+        t = e.options[0];
+      else if (this.uploadedUrl) {
+        const i = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: _(),
+            "x-api-key": "leo"
+          }
+        }, a = await fetch("https://assistant-int.adobe.io/api/v1/asset", i), { id: n, href: r } = await a.json();
+        let l = atob(this.uploadedUrl.split(",")[1]), o = [];
+        for (let g = 0; g < l.length; g++)
+          o.push(l.charCodeAt(g));
+        let p = new Blob([new Uint8Array(o)], { type: "image/jpeg" });
+        await ct(r, p);
+        const C = {
+          method: "POST",
+          headers: {
+            Authorization: _(),
+            "Content-Type": "application/json",
+            "x-api-key": "leo"
+          },
+          body: `{"surfaceId":"Unity","assets":[{"id": "${n}"}]}`
+        }, E = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", C), { outputUrl: k } = await E.json();
+        t = k;
+      } else {
+        const i = this.container.querySelector(":scope > img").src;
+        if (!i.includes("data:image/jpeg")) {
+          const a = new URL(i), n = {
+            method: "POST",
+            headers: {
+              Authorization: _(),
+              "Content-Type": "application/json",
+              "x-api-key": "leo"
+            },
+            body: `{"surfaceId":"Unity","assets":[{"href": "${a}"}]}`
+          }, r = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", n), { outputUrl: l } = await r.json();
+          t = l;
+        }
       }
+      fabric.Image.fromURL(t, (i) => {
+        const a = {
+          width: i.width,
+          height: i.height,
+          selectable: !1
+        }, n = Math.min(this.width / i.width, this.height / i.height);
+        a.left = (this.width - i.width * n) / 2, a.top = (this.height - i.height * n) / 2, a.scaleX = n, a.scaleY = n, i.set(a), this.frontImage = i;
+        const r = this.canvas.getObjects();
+        for (let l = 0; l < r.length; l++)
+          this.canvas.remove(r[l]);
+        this.canvas.add(i), this.img.style.visibility = "hidden", this.loaderDisable(), e.next === "changebg" && this.controlManager.enableChangeBG.forward();
+      });
     });
-    r(this, "changebg", (t) => {
+    c(this, "applyMask", () => {
+      this.fabric && rt(this.fabric);
+      const t = this.fabric.default.fabric, e = this.canvas;
+      e.isDrawingMode = !0, e.freeDrawingBrush = new t.PencilBrush(e), e.freeDrawingBrush.color = "black", e.freeDrawingBrush.width = 20, setTimeout(() => {
+        const i = document.createElement("canvas");
+        i.width = e.width, i.height = e.height;
+        const a = i.getContext("2d");
+        e.getObjects().forEach((r) => {
+          r.type === "path" && r.render(a);
+        });
+        const n = i.toDataURL("image/png");
+        t.Image.fromURL(n, (r) => {
+          r.set({
+            left: 0,
+            top: 0,
+            selectable: !1,
+            globalCompositeOperation: "destination-out"
+          }), e.clear(), e.add(this.bgImage), e.add(this.frontImage), e.add(r), e.renderAll();
+        });
+      }, 5e3);
+    });
+    c(this, "changebg", (t) => {
       fabric.Image.fromURL(t, (e) => {
         const i = {
           width: e.width,
           height: e.height,
           selectable: !1
-        }, s = Math.min(this.width / e.width, this.height / e.height);
-        i.left = (this.width - e.width * s) / 2, i.top = (this.height - e.height * s) / 2, i.scaleX = s, i.scaleY = s, e.set(i), this.bgImage && this.canvas.remove(this.bgImage), this.bgImage = e, this.canvas.sendBackwards(e);
+        }, a = Math.min(this.width / e.width, this.height / e.height);
+        i.left = (this.width - e.width * a) / 2, i.top = (this.height - e.height * a) / 2, i.scaleX = a, i.scaleY = a, e.set(i), this.bgImage && this.canvas.remove(this.bgImage), this.bgImage = e, this.canvas.sendBackwards(e);
       });
     });
-    r(this, "changeHueFilter", (t) => {
+    c(this, "changeHueFilter", (t) => {
       this.filters.applyHueFilter(this.canvas, t);
     });
-    r(this, "changeSatFilter", (t) => {
+    c(this, "changeSatFilter", (t) => {
       this.filters.applySaturationFilter(this.canvas, t);
     });
-    r(this, "upload", async () => {
+    c(this, "upload", async () => {
       await this.ondemandLoad();
-      const t = await mt();
-      fabric.Image.fromURL(t, (e) => {
+      const t = await nt();
+      this.uploadedUrl = t, fabric.Image.fromURL(t, (e) => {
         const i = {
           width: e.width,
           height: e.height,
           selectable: !1
-        }, s = Math.min(this.width / e.width, this.height / e.height);
-        i.left = (this.width - e.width * s) / 2, i.top = (this.height - e.height * s) / 2, i.scaleX = s, i.scaleY = s, e.set(i);
+        }, a = Math.min(this.width / e.width, this.height / e.height);
+        i.left = (this.width - e.width * a) / 2, i.top = (this.height - e.height * a) / 2, i.scaleX = a, i.scaleY = a, e.set(i);
         const n = this.canvas.getObjects();
-        for (let o = 0; o < n.length; o++)
-          this.canvas.remove(n[o]);
-        this.canvas.add(e);
+        for (let r = 0; r < n.length; r++)
+          this.canvas.remove(n[r]);
+        this.canvas.add(e), this.controlManager.resetButton.forward();
       });
     });
-    r(this, "enableMask", async () => {
-      this.placeholder = document.getElementById("placeholder"), this.previewImage = document.getElementById("previewImage"), this.previewMaskImage = document.getElementById("previewMaskImage"), this.canvas.isDrawingMode = !0, this.canvas.freeDrawingBrush.color = "ff0000", this.canvas.freeDrawingBrush.width = 20, this.onChanged.subscribe(this.reloadPreview), this.reloadPreview();
+    c(this, "ondemandLoad", async () => {
+      this.canvasLoaded || (this.fabric = await import("./fabric-T-x1IxqJ.js").then((t) => t.f), this.filters = W.init(), this.loadCanvas(), this.state = new it(this.canvas, this.config), this.controlManager.canvasLoaded.forward());
     });
-    r(this, "ondemandLoad", async () => {
-      this.canvasLoaded || (this.fabric = await import("./fabric-T-x1IxqJ.js").then((t) => t.f), this.filters = W.init(), this.loadCanvas(), this.state = new pt(this.canvas, this.config), this.controlManager.canvasLoaded.forward());
-    });
-    r(this, "reloadPreview", async () => {
-      const t = this.canvas.getObjects(), e = t.find((h) => h instanceof this.fabric.default.fabric.Image);
-      if (!e || !e.visible) {
-        this.previewImage.src = "", this.previewMaskImage.src = "";
-        return;
-      }
-      const [i, s] = K(this.canvas.getWidth(), this.canvas.getHeight());
-      t.forEach((h) => {
-        h !== e && h.render(s);
-      });
-      const [n, o] = K(this.canvas.getWidth(), this.canvas.getHeight());
-      e.render(o), wt(this.canvas.getWidth(), this.canvas.getHeight(), o, s), this.previewImage.src = n.toDataURL(), this.previewMaskImage.src = i.toDataURL();
-    });
-    this.element = t, this.img = null, this.canvasLoaded = !1, this.canvas = null, this.container = this.checkMountType(t), this.config = { ...ft, ...e }, this.onChanged = new m(), this.height = this.container.clientHeight, this.width = this.container.clientWidth, this.$ = (i) => this.container.querySelector(i), this.filters = null, this.controlManager = new ut(this.config.workflow), this.loadEditor();
+    this.element = t, this.img = null, this.canvasLoaded = !1, this.canvas = null, this.container = this.checkMountType(t), this.config = { ...ot, ...e }, this.onChanged = new u(), this.height = this.container.clientHeight, this.width = this.container.clientWidth, this.$ = (i) => this.container.querySelector(i), this.filters = null, this.controlManager = new st(this.config.workflow), this.loadEditor();
   }
   async loadEditor() {
     this.loadControls();
   }
   checkMountType(t) {
     if (t.tagName === "IMG") {
-      const e = t.clientHeight, i = t.clientWidth, s = document.createElement("div");
-      return s.style.height = `${e}px`, s.style.width = `${i}px`, P(t) && (s.style.position = "relative"), t.parentNode.insertBefore(s, t), s.appendChild(t), this.img = img, s;
+      const e = t.clientHeight, i = t.clientWidth, a = document.createElement("div");
+      return a.style.height = `${e}px`, a.style.width = `${i}px`, H(t) && (a.style.position = "relative"), t.parentNode.insertBefore(a, t), a.appendChild(t), this.img = img, a;
     } else if (t.tagName === "PICTURE") {
-      const e = t.querySelector("img"), i = e.clientHeight, s = e.clientWidth, n = document.createElement("div");
-      return n.style.height = `${i}px`, n.style.width = `${s}px`, n.classList.add("editor-wrapper"), P(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), this.img = e, n;
+      const e = t.querySelector("img"), i = e.clientHeight, a = e.clientWidth, n = document.createElement("div");
+      return n.style.height = `${i}px`, n.style.width = `${a}px`, n.classList.add("editor-wrapper"), H(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), this.img = e, n;
     } else
-      return P(t) && (t.style.position = "relative"), this.img = t.querySelector("img"), t;
-  }
-  loadRightMenu() {
-    const t = document.createElement("div");
-    t.classList.add("menu-right"), t.classList.add("sliderTray"), this.container.appendChild(t), this.$(".sliderTray").insertAdjacentHTML("beforeend", dt), this.$(".sliderTray").insertAdjacentHTML("beforeend", ct), this.$(".sliderTray").insertAdjacentHTML("beforeend", lt);
+      return H(t) && (t.style.position = "relative"), t.insertAdjacentHTML("beforeend", '<div class="lds-ring hide"><div></div><div></div><div></div><div></div></div>'), this.img = t.querySelector("img"), t;
   }
   loadControls() {
-    this.container.appendChild(this.controlManager.initControls()), this.controlManager.removebgEvent.subscribe(this.removebg), this.controlManager.uploadEvent.subscribe(this.upload), this.controlManager.changebgEvent.subscribe(this.changebg), this.controlManager.hueFilter.subscribe(this.changeHueFilter), this.controlManager.satFilter.subscribe(this.changeSatFilter);
+    this.container.appendChild(this.controlManager.initControls()), this.controlManager.removebgEvent.subscribe(this.removebg), this.controlManager.uploadEvent.subscribe(this.upload), this.controlManager.changebgEvent.subscribe(this.changebg), this.controlManager.hueFilter.subscribe(this.changeHueFilter), this.controlManager.satFilter.subscribe(this.changeSatFilter), this.controlManager.maskEvent.subscribe(this.applyMask);
   }
   loadCanvas() {
     const t = document.createElement("div");
     t.classList.add("canvas-placeholder"), this.container.appendChild(t);
-    const e = ht(this.height, this.width, "canvas");
+    const e = et(this.height, this.width, "canvas");
     this.$(".canvas-placeholder").appendChild(e), window.canvas = this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: !1,
       height: this.height,
-      width: this.width,
-      backgroundColor: "#d3d3d3"
-    }), this.canvasLoaded = !0, fabric.Object.prototype.transparentCorners = !1, this.img.style.visibility = "hidden";
-  }
-  initLayerPanel() {
-    const t = D.create(this.state);
-    this.$(".sliderTray").appendChild(t.view), this.canvas.on("object:added", this.onAnyChange), this.canvas.on("object:modified", this.onAnyChange), this.canvas.on("object:moving", this.onAnyChange), this.canvas.on("object:removed", this.onAnyChange), this.canvas.on("object:resizing", this.onAnyChange), this.canvas.on("object:rotating", this.onAnyChange), this.canvas.on("object:scaling", this.onAnyChange), this.canvas.on("object:skewing", this.onAnyChange), this.canvas.on("text:changed", this.onAnyChange), this.canvas.on("text:editing:exited", this.onAnyChange), this.canvas.on("selection:cleared", this.onAnyChange), this.canvas.on("selection:created", this.onAnyChange), this.canvas.on("selection:updated", this.onAnyChange), this.state.onLayerOrderChanged.subscribe(this.onAnyChange), this.state.onPropertiesChanged.subscribe(this.onAnyChange);
-  }
-  bindFilterEvents() {
-    this.$("#brightness-value").addEventListener("change", (t) => {
-      const e = parseFloat(t.target.value);
-      this.filters.applyBrightnessFilter(this.canvas, e);
-    }), this.$("#hue-value").addEventListener("change", (t) => {
-      this.filters.applyHueFilter(this.canvas, t.target.value);
-    }), this.$("#contrast-value").addEventListener("change", (t) => {
-      const e = parseFloat(t.target.value);
-      this.filters.applyConstrastFilter(this.canvas, e);
-    }), this.$("#saturation-value").addEventListener("change", (t) => {
-      const e = parseFloat(t.target.value);
-      this.filters.applySaturationFilter(this.canvas, e);
-    });
+      width: this.width
+      // backgroundImage: ""
+    }), this.canvasLoaded = !0, fabric.Object.prototype.transparentCorners = !1;
   }
 }
-const bt = `<div class="menu-bar">
+const lt = `<div class="menu-bar">
 <button id="vector-select">
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -815,14 +620,14 @@ const bt = `<div class="menu-bar">
 </div>
 <input type="color" id="vector-fill" />
 </div>`;
-function U(a) {
-  return window.getComputedStyle(a).getPropertyValue("position") === "static";
+function j(s) {
+  return window.getComputedStyle(s).getPropertyValue("position") === "static";
 }
-const yt = (a, t, e) => {
+const dt = (s, t, e) => {
   t.split(" ").forEach(
-    (i) => a.addEventListener(i, e, !1)
+    (i) => s.addEventListener(i, e, !1)
   );
-}, Ct = {
+}, ht = {
   initFill: { color: "FF0000", opacity: 1 },
   initStroke: { color: "000000", opacity: 1, width: 1 },
   text: { stroke_width: 0, font_size: 24, font_family: "serif" },
@@ -835,35 +640,35 @@ const yt = (a, t, e) => {
   // 'standalone' | 'mount'
   sourceLoad: !0
 };
-class Ft {
+class xt {
   checkMountType(t) {
     if (t.tagName === "IMG") {
       this.src = t.src;
-      const e = t.clientHeight, i = t.clientWidth, s = document.createElement("div");
-      return s.style.height = `${e}px`, s.style.width = `${i}px`, s.classList.add("editor-wrapper"), U(t) && (s.style.position = "relative"), t.parentNode.insertBefore(s, t), s.appendChild(t), s;
+      const e = t.clientHeight, i = t.clientWidth, a = document.createElement("div");
+      return a.style.height = `${e}px`, a.style.width = `${i}px`, a.classList.add("editor-wrapper"), j(t) && (a.style.position = "relative"), t.parentNode.insertBefore(a, t), a.appendChild(t), a;
     } else if (t.tagName === "PICTURE") {
       const e = t.querySelector("img");
       this.src = e.src;
-      const i = e.clientHeight, s = e.clientWidth, n = document.createElement("div");
-      return n.style.height = `${i}px`, n.style.width = `${s}px`, n.classList.add("editor-wrapper"), U(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), n;
+      const i = e.clientHeight, a = e.clientWidth, n = document.createElement("div");
+      return n.style.height = `${i}px`, n.style.width = `${a}px`, n.classList.add("editor-wrapper"), j(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), n;
     } else {
-      const e = U(t);
+      const e = j(t);
       return div.classList.add("editor-wrapper"), e && (t.style.position = "relative"), t;
     }
   }
   constructor(t, e = {}) {
-    this.element = t, this.src = null, this.editorWrapper = this.checkMountType(t), this.height = this.editorWrapper.clientHeight, this.width = this.editorWrapper.clientWidth, this.config = { ...Ct, ...e, dimensions: [this.width, this.height] }, this.editorWrapper.insertAdjacentHTML("beforeend", bt), this.config.editorMode === "standalone" && this.bindEvents();
+    this.element = t, this.src = null, this.editorWrapper = this.checkMountType(t), this.height = this.editorWrapper.clientHeight, this.width = this.editorWrapper.clientWidth, this.config = { ...ht, ...e, dimensions: [this.width, this.height] }, this.editorWrapper.insertAdjacentHTML("beforeend", lt), this.config.editorMode === "standalone" && this.bindEvents();
   }
   bindEvents() {
     window.addEventListener("keydown", (t) => this.onKeyDownHandler(t)), this.editorWrapper.querySelector("#import-btn").addEventListener("change", (t) => {
       const e = t.target.files[0];
       if (e && e.type === "image/svg+xml") {
         const i = new FileReader();
-        i.onload = (s) => {
-          const n = s.target.result;
+        i.onload = (a) => {
+          const n = a.target.result;
           this.canvas.clear(), this.canvas.setSvgString(n);
-          const o = this.editorWrapper, h = getComputedStyle(o, null).height.replace("px", ""), p = getComputedStyle(o, null).width.replace("px", "");
-          this.canvas.setCurrentZoom(h / this.canvas.contentH), this.canvas.updateCanvas(p, h);
+          const r = this.editorWrapper, l = getComputedStyle(r, null).height.replace("px", ""), o = getComputedStyle(r, null).width.replace("px", "");
+          this.canvas.setCurrentZoom(l / this.canvas.contentH), this.canvas.updateCanvas(o, l);
         }, i.readAsText(e);
       } else
         alert("Please upload a valid SVG file.");
@@ -880,9 +685,9 @@ class Ft {
         });
       }, this.canvas.textActions.setInputElem(this.hiddenTextTag), this.bindEvents(), this.config.sourceLoad === !0 && this.src !== null && window.fetch(this.src).then((e) => e.text()).then((e) => {
         this.canvas.setSvgString(e), this.editorWrapper;
-        const i = this.editorWrapper.clientHeight, s = this.editorWrapper.clientWidth;
-        this.canvas.setCurrentZoom(i / this.canvas.contentH), this.canvas.updateCanvas(s, i);
-      }), this.canvas.setMode("select"), yt(this.hiddenTextTag, "keyup input", (e) => {
+        const i = this.editorWrapper.clientHeight, a = this.editorWrapper.clientWidth;
+        this.canvas.setCurrentZoom(i / this.canvas.contentH), this.canvas.updateCanvas(a, i);
+      }), this.canvas.setMode("select"), dt(this.hiddenTextTag, "keyup input", (e) => {
         this.canvas.setTextContent(e.currentTarget.value);
       });
     }), this.editorWrapper.querySelector("#vector-rect").addEventListener("click", () => this.canvas.setMode("rect")), this.editorWrapper.querySelector("#vector-line").addEventListener("click", () => this.canvas.setMode("line")), this.editorWrapper.querySelector("#vector-path").addEventListener("click", () => this.canvas.setMode("path")), this.editorWrapper.querySelector("#vector-fhpath").addEventListener("click", () => this.canvas.setMode("fhpath")), this.editorWrapper.querySelector("#vector-fill").addEventListener("input", (t) => {
@@ -898,7 +703,7 @@ class Ft {
     }
   }
 }
-const xt = `
+const pt = `
 <div id="rangePack" class="range_pack"></div>
 <div class="menu-bar">
 <div class="upload-btn-wrapper-video">
@@ -950,243 +755,256 @@ const xt = `
     <input id="import-btn-video" type="file" name="myfile" />
   </button>
 </div>
-</div>`, y = (a, t = !0) => {
-  a = parseFloat(a);
-  let e = Math.floor(a / 3600), i = Math.floor((a - e * 3600) / 60), s = a - e * 3600 - i * 60;
-  e < 10 && (e = "0" + e), i < 10 && (i = "0" + i), s < 10 && (s = "0" + s);
-  let n = /\..*$/, o = String(s).match(n);
-  return e + ":" + i + ":" + String(s).replace(n, "") + (t ? o ? o[0] : ".000" : "");
-}, Z = async (a) => new Promise((t, e) => {
+</div>`, m = (s, t = !0) => {
+  s = parseFloat(s);
+  let e = Math.floor(s / 3600), i = Math.floor((s - e * 3600) / 60), a = s - e * 3600 - i * 60;
+  e < 10 && (e = "0" + e), i < 10 && (i = "0" + i), a < 10 && (a = "0" + a);
+  let n = /\..*$/, r = String(a).match(n);
+  return e + ":" + i + ":" + String(a).replace(n, "") + (t ? r ? r[0] : ".000" : "");
+}, F = async (s) => new Promise((t, e) => {
   const i = new FileReader();
   i.onload = () => {
     t(i.result);
-  }, i.onerror = e, i.readAsDataURL(a);
-}), L = (a, t, ...e) => {
-  const i = document.createElement(a);
-  for (let s in t)
-    if (s.startsWith("on") && i.addEventListener(s.substring(2).toLowerCase(), t[s]), s.startsWith("data-")) {
-      const n = s.split("-");
-      i.dataset[n[1]] = t[s];
+  }, i.onerror = e, i.readAsDataURL(s);
+}), b = (s, t, ...e) => {
+  const i = document.createElement(s);
+  for (let a in t)
+    if (a.startsWith("on") && i.addEventListener(a.substring(2).toLowerCase(), t[a]), a.startsWith("data-")) {
+      const n = a.split("-");
+      i.dataset[n[1]] = t[a];
     } else
-      s === "class" ? i.classList.add(t[s]) : s === "value" ? i.value = t[s] : i[s] = t[s];
-  return e.forEach((s) => {
-    typeof s == "string" ? i.appendChild(document.createTextNode(s)) : i.appendChild(s);
+      a === "class" ? i.classList.add(t[a]) : a === "value" ? i.value = t[a] : i[a] = t[a];
+  return e.forEach((a) => {
+    typeof a == "string" ? i.appendChild(document.createTextNode(a)) : i.appendChild(a);
   }), i;
 };
-function S(a) {
-  let t = a;
-  return [() => t, (s) => {
-    t = s;
+function y(s) {
+  let t = s;
+  return [() => t, (a) => {
+    t = a;
   }];
 }
-const J = (a) => new Promise((t, e) => {
+const G = (s) => new Promise((t, e) => {
   const i = document.createElement("script");
-  i.src = a, i.onload = t, i.onerror = () => e(new Error(`Script load error: ${a}`)), document.head.appendChild(i);
+  i.src = s, i.onload = t, i.onerror = () => e(new Error(`Script load error: ${s}`)), document.head.appendChild(i);
 });
-function Lt(a) {
-  return window.getComputedStyle(a).getPropertyValue("position") === "static";
+function gt(s) {
+  return window.getComputedStyle(s).getPropertyValue("position") === "static";
 }
-async function St(a) {
-  return await (await fetch(a)).blob();
+async function ut(s) {
+  return await (await fetch(s)).blob();
 }
-let A = 100;
-function Mt({
-  thumbNails: a,
+let T = 100;
+function vt({
+  thumbNails: s,
   rEnd: t,
   rStart: e,
   handleUpdaterStart: i,
-  handleUpdaterEnd: s,
+  handleUpdaterEnd: a,
   loading: n,
-  videoMeta: o,
-  handleTrim: h
+  videoMeta: r,
+  handleTrim: l
 }) {
-  if (a.length === 0 && !n)
+  if (s.length === 0 && !n)
     return null;
   if (n) {
-    const b = L("h2", {}, "Processing thumbnails.....");
-    return L("center", {}, b);
+    const g = b("h2", {}, "Processing thumbnails.....");
+    return b("center", {}, g);
   }
-  const p = document.getElementById("rangePack");
-  p.innerHTML = "";
-  const g = L("div", { class: "image_box" });
-  a.forEach((b, T) => {
-    const $ = L("img", {
-      src: b,
-      alt: `sample_video_thumbnail_${T}`
+  const o = document.getElementById("rangePack");
+  o.innerHTML = "";
+  const p = b("div", { class: "image_box" });
+  s.forEach((g, M) => {
+    const R = b("img", {
+      src: g,
+      alt: `sample_video_thumbnail_${M}`
     });
-    g.appendChild($);
+    p.appendChild(R);
   });
-  const q = L("div", {
+  const C = b("div", {
     class: "clip_box",
     style: `width: calc(${t - e}%); left: ${e}%;`,
-    "data-start": y(
-      `${e / A * o.duration}`,
+    "data-start": m(
+      `${e / T * r.duration}`,
       !1
     ),
-    "data-end": y(
-      `${t / A * o.duration}`,
+    "data-end": m(
+      `${t / T * r.duration}`,
       !1
     )
   });
-  for (let b = 0; b < 2; b++) {
-    const T = L("span", { class: "clip_box_des" });
-    q.appendChild(T);
+  for (let g = 0; g < 2; g++) {
+    const M = b("span", { class: "clip_box_des" });
+    C.appendChild(M);
   }
-  g.appendChild(q);
-  const C = L("input", {
+  p.appendChild(C);
+  const E = b("input", {
     class: "range",
     type: "range",
     min: 0,
-    max: A,
+    max: T,
     onInput: i,
     value: e
-  }), f = L("input", {
+  }), k = b("input", {
     class: "range",
     type: "range",
     min: 0,
-    max: A,
-    onInput: s,
+    max: T,
+    onInput: a,
     value: t
   });
-  g.appendChild(C), g.appendChild(f), p.appendChild(g);
+  p.appendChild(E), p.appendChild(k), o.appendChild(p);
 }
-let Q = 100, j = null, tt = null, u = null;
-const Et = {
+let N = 100, I = null, z = null, f = null;
+const ft = {
   load: "lazy"
 };
-async function qt(a = "") {
-  await J(`${a}/assets/ffmpeg/package/dist/umd/ffmpeg.js`), await J(`${a}/assets/util/package/dist/umd/index.js`), j = FFmpegUtil.fetchFile, tt = FFmpegWASM.FFmpeg, u = new tt(), u.on("log", ({ message: t }) => {
+async function mt(s = "") {
+  await G(`${s}/assets/ffmpeg/package/dist/umd/ffmpeg.js`), await G(`${s}/assets/util/package/dist/umd/index.js`), I = FFmpegUtil.fetchFile, z = FFmpegWASM.FFmpeg, f = new z(), f.on("log", ({ message: t }) => {
     console.log(t);
-  }), u.on("progress", ({ progress: t }) => {
+  }), f.on("progress", ({ progress: t }) => {
     console.log(`${t * 100} %`);
-  }), await u.load({
-    coreURL: `${a}/assets/core/package/dist/umd/ffmpeg-core.js`
+  }), await f.load({
+    coreURL: `${s}/assets/core/package/dist/umd/ffmpeg-core.js`
   });
 }
-async function kt(a, t) {
-  t = { ...Et, ...t };
-  const e = a.clientHeight, i = a.clientWidth, s = document.createElement("div");
-  s.style.height = `${e}px`, s.style.width = `${i}px`, s.classList.add("editor-wrapper"), Lt(a) && (s.style.position = "relative"), a.parentNode.insertBefore(s, a), s.appendChild(a);
-  const [o, h] = S(null), [p, g] = S({}), [q, C] = S([]), [f, b] = S(!1), [T, $] = S(null), [Tt, G] = S(!1), [k, et] = S(0), [H, it] = S(10);
-  a.insertAdjacentHTML("afterend", xt), document.querySelector("#import-btn-video").addEventListener("change", st), a.addEventListener("loadedmetadata", at);
-  async function st({ target: { files: l } }) {
-    const d = l[0];
-    a.src = await Z(d), g(d), C(await Z(d));
+async function wt(s, t) {
+  t = { ...ft, ...t };
+  const e = s.clientHeight, i = s.clientWidth > window.innerWidth ? window.innerWidth : s.clientWidth, a = document.createElement("div");
+  a.style.height = `${e}px`, a.style.width = `${i}px`, a.classList.add("editor-wrapper"), gt(s) && (a.style.position = "relative"), s.parentNode.insertBefore(a, s), a.appendChild(s);
+  const [r, l] = y(null), [o, p] = y({}), [C, E] = y([]), [k, g] = y(!1), [M, R] = y(null), [bt, P] = y(!1), [L, Z] = y(0), [B, X] = y(10);
+  s.insertAdjacentHTML("afterend", pt), document.querySelector("#import-btn-video").addEventListener("change", Y), s.addEventListener("loadedmetadata", J);
+  async function Y({ target: { files: d } }) {
+    const h = d[0];
+    s.src = await F(h), p(h), E(await F(h));
   }
-  document.querySelector(".video-trim").addEventListener("click", () => N()), document.querySelector(".video-frames").addEventListener("click", async () => {
-    const l = a.querySelector("source").src, d = await St(l), v = "input.mp4";
-    await u.writeFile(v, await j(d));
-    const x = await u.readFile(v);
-    g(x), z(a);
+  document.querySelector(".video-trim").addEventListener("click", () => D()), document.querySelector(".video-frames").addEventListener("click", async () => {
+    const d = s.querySelector("source").src, h = await ut(d), v = "input.mp4";
+    await f.writeFile(v, await I(h));
+    const w = await f.readFile(v);
+    p(w), O(s);
   });
-  async function N() {
-    G(!0);
-    let l = (k() / 100 * o().duration).toFixed(2), d = (H() / 100 * o().duration - l).toFixed(2);
+  async function D() {
+    P(!0);
+    let d = (L() / 100 * r().duration).toFixed(2), h = (B() / 100 * r().duration - d).toFixed(2);
     console.log(
-      l,
       d,
-      y(l),
-      y(d)
+      h,
+      m(d),
+      m(h)
     );
     try {
-      await u.writeFile(
-        p().name,
-        await j(p())
-      ), await u.exec([
+      await f.writeFile(
+        o().name,
+        await I(o())
+      ), await f.exec([
         "-ss",
-        y(l),
+        m(d),
         "-i",
-        p().name,
+        o().name,
         "-t",
-        y(d),
+        m(h),
         "-c",
         "copy",
         "ping.mp4"
       ]);
-      const v = await u.readFile("ping.mp4"), x = await Z(
+      const v = await f.readFile("ping.mp4"), w = await F(
         new Blob([v.buffer], { type: "video/mp4" })
       );
-      document.querySelector("video").src = x, $(x);
+      document.querySelector("video").src = w, R(w);
     } catch (v) {
       console.log(v);
     } finally {
-      G(!1);
+      P(!1);
     }
   }
-  async function at(l) {
-    const d = l.target;
-    s.style.width = `${d.videoWidth}px`, s.style.height = `${d.videoHeight}px`, z(d);
+  async function J(d) {
+    const h = d.target;
+    a.style.width = `${h.videoWidth}px`, a.style.height = `${h.videoHeight}px`, O(h);
   }
-  async function z(l) {
-    const d = (I) => (R) => {
-      I(R.target.value);
-      const O = document.querySelector(".clip_box");
-      O.style = `width: calc(${H() - k()}%); left: ${k()}%;`, O.dataset.start = y(
-        `${k() / Q * E.duration}`,
+  async function O(d) {
+    const h = (U) => (V) => {
+      U(V.target.value);
+      const q = document.querySelector(".clip_box");
+      q.style = `width: calc(${B() - L()}%); left: ${L()}%;`, q.dataset.start = m(
+        `${L() / N * x.duration}`,
         !1
-      ), O.dataset.end = y(
-        `${H() / Q * E.duration}`,
+      ), q.dataset.end = m(
+        `${B() / N * x.duration}`,
         !1
       );
     }, v = {
-      name: p().name,
-      duration: l.duration,
-      videoWidth: l.videoWidth,
-      videoHeight: l.videoHeight
+      name: o().name,
+      duration: d.duration,
+      videoWidth: d.videoWidth,
+      videoHeight: d.videoHeight
     };
-    h(v);
-    const x = await nt(v), B = d(et), M = d(it), V = !1, E = { duration: 60 };
-    Mt({
-      thumbNails: x,
-      rEnd: H(),
-      rStart: k(),
-      handleUpdaterStart: B,
-      handleUpdaterEnd: M,
-      loading: V,
-      videoMeta: E,
-      handleTrim: N
+    l(v);
+    const w = await K(v), A = h(Z), S = h(X), $ = !1, x = { duration: 60 };
+    vt({
+      thumbNails: w,
+      rEnd: B(),
+      rStart: L(),
+      handleUpdaterStart: A,
+      handleUpdaterEnd: S,
+      loading: $,
+      videoMeta: x,
+      handleTrim: D
     });
   }
-  const nt = async ({ duration: l }) => {
-    b(!0);
-    let d = 15, v = l < d ? l : 15, x = l === d ? 1 : l / v;
-    const B = [];
-    await u.writeFile(
-      p().name,
-      await j(p())
+  const K = async ({ duration: d }) => {
+    g(!0);
+    let h = 15, v = d < h ? d : 15, w = d === h ? 1 : d / v;
+    const A = [];
+    await f.writeFile(
+      o().name,
+      await I(o())
     );
-    for (let M = 0; M < v; M++) {
-      let V = y(Math.round(M * x));
+    for (let S = 0; S < v; S++) {
+      let $ = m(Math.round(S * w));
       try {
-        await u.exec([
+        await f.exec([
           "-ss",
-          V,
+          $,
           "-i",
-          p().name,
+          o().name,
           "-t",
           "00:00:1.000",
           "-vf",
           "scale=150:-1",
-          `img${M}.png`
+          `img${S}.png`
         ]);
-        const E = await u.readFile(`img${M}.png`);
-        let I = new Blob([E.buffer], { type: "image/png" }), R = await Z(I);
-        B.push(R);
-      } catch (E) {
-        console.log({ message: E });
+        const x = await f.readFile(`img${S}.png`);
+        let U = new Blob([x.buffer], { type: "image/png" }), V = await F(U);
+        A.push(V);
+      } catch (x) {
+        console.log({ message: x });
       }
     }
-    return b(!1), B;
+    return g(!1), A;
   };
-  await qt(t.basePath);
+  await mt(t.basePath);
 }
-class Zt {
+class Ct {
   constructor(t, e) {
-    kt(t, e);
+    wt(t, e);
   }
 }
+function Et(s, t) {
+  const e = [
+    ...s.querySelectorAll("li:not(ul li ul li)")
+  ].map((a) => {
+    var o;
+    const n = (o = a.querySelector(".icon")) == null ? void 0 : o.classList.value, r = {}, l = n == null ? void 0 : n.split("-")[1];
+    return r.type = l, a.innerHTML.includes("noInitial") && (r.noInitial = !0), a.querySelectorAll("li img").length > 0 && (r.experience = "mock", r.options = [...a.querySelectorAll("li img")].map(
+      (p) => `${t}${p == null ? void 0 : p.getAttribute("src")}`
+    )), r;
+  });
+  return e.find((a) => a.type === "changebg") && (e[0].next = "changebg"), e;
+}
 export {
-  Bt as Editor,
-  Ft as VectorEditor,
-  Zt as VideoEditor
+  St as Editor,
+  xt as VectorEditor,
+  Ct as VideoEditor,
+  Et as getWorkflow
 };

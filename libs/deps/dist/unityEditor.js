@@ -1,9 +1,9 @@
-var Q = Object.defineProperty;
-var tt = (s, t, e) => t in s ? Q(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
-var c = (s, t, e) => (tt(s, typeof t != "symbol" ? t + "" : t, e), e);
-class W {
+var K = Object.defineProperty;
+var Q = (a, t, e) => t in a ? K(a, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : a[t] = e;
+var c = (a, t, e) => (Q(a, typeof t != "symbol" ? t + "" : t, e), e);
+class j {
   static init() {
-    return new W();
+    return new j();
   }
   constructor() {
     this.fabric = null, this.loadFrabric();
@@ -40,12 +40,12 @@ class W {
     }), t.renderAll();
   }
 }
-function H(s) {
-  return window.getComputedStyle(s).getPropertyValue("position") === "static";
+function H(a) {
+  return window.getComputedStyle(a).getPropertyValue("position") === "static";
 }
-function et(s, t, e) {
+function tt(a, t, e) {
   const i = document.createElement("canvas");
-  return i.id = e, i.height = s, i.width = t, i;
+  return i.id = e, i.height = a, i.width = t, i;
 }
 class u {
   constructor() {
@@ -68,7 +68,7 @@ class u {
     return this.listeners.length;
   }
 }
-class it {
+class et {
   constructor(t, e) {
     this.canvas = t, this.configuration = e, this.onModeChanged = new u(), this.onLayerOrderChanged = new u(), this.onPropertiesChanged = new u();
   }
@@ -88,13 +88,13 @@ class it {
     const t = /* @__PURE__ */ new Map();
     return this.forEachObject((e) => {
       t.set(e, e.selectable), e.selectable && e.set("selectable", !1);
-    }), new at(t);
+    }), new it(t);
   }
   setMode(t) {
     this.mode = t, this.onModeChanged.forward(t);
   }
 }
-class at {
+class it {
   constructor(t) {
     this.map = t;
   }
@@ -117,8 +117,8 @@ class st {
       const e = this.workflow[t];
       if (e.experience === "mock") {
         let i = "";
-        for (let a = 0; a < e.options.length; a++)
-          i += `<div><img height="68" src="${e.options[a]}" /></div>`;
+        for (let s = 0; s < e.options.length; s++)
+          i += `<div><img height="68" src="${e.options[s]}" /></div>`;
         return i;
       }
       return "";
@@ -134,14 +134,14 @@ class st {
     c(this, "changebg", (t) => {
       let e = "";
       this.workflow[t].noInitial === !0 && (e = "hide");
-      const a = `<div class="button-wrapper change-bg-wrapper ${e}"><button class="change-bg">
+      const s = `<div class="button-wrapper change-bg-wrapper ${e}"><button class="change-bg">
             <img src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/changebg.svg">
             <span>Change Background</span>
         </button>
         <div class="button-panel changebg-panel hide">
             ${this.loadBGImages(t)}
         </div></div>`;
-      this.menuBar.insertAdjacentHTML("beforeend", a), this.menuBar.querySelector(".button-panel").addEventListener("click", (n) => {
+      this.menuBar.insertAdjacentHTML("beforeend", s), this.menuBar.querySelector(".button-panel").addEventListener("click", (n) => {
         n.target.tagName === "IMG" && this.changebgEvent.forward(n.target.src);
       }), this.menuBar.querySelector(".change-bg").addEventListener("click", () => {
         this.menuBar.querySelector(".changebg-panel").classList.toggle("hide");
@@ -166,11 +166,11 @@ class st {
     c(this, "connector", (t) => {
       let e = "";
       this.workflow[t].noInitial === !0 && (e = "hide");
-      const a = `<button class="app-connector ${e}">
+      const s = `<button class="app-connector ${e}">
             <span>Continue in app</span>
             <img height="33" src="https://main--milo--adobecom.hlx.page/drafts/sarangi/pepc/assets/ps.svg">
         </button>`;
-      this.menuBar.insertAdjacentHTML("beforeend", a);
+      this.menuBar.insertAdjacentHTML("beforeend", s);
     });
     c(this, "filters", (t) => {
       this.menuBar.insertAdjacentHTML("beforeend", `<div class="button-wrapper"><button class="image-filter">
@@ -224,27 +224,27 @@ class st {
     });
   }
 }
-function nt() {
-  return new Promise((s) => {
+function at() {
+  return new Promise((a) => {
     const t = document.createElement("input");
     t.type = "file", t.accept = "image/*", t.addEventListener("change", () => {
       if (t.files && t.files.length > 0) {
         const e = t.files[0], i = new FileReader();
         i.onload = () => {
-          s(i.result);
+          a(i.result);
         }, i.readAsDataURL(e);
       } else
-        s(null);
+        a(null);
     }), t.click();
   });
 }
-const rt = function({ default: { fabric: s } }) {
-  console.log(s), window.fabric = s, s.Image.filters.BlendImage.prototype.mode = "mask", s.Image.fromURL(
+const nt = function({ default: { fabric: a } }) {
+  console.log(a), window.fabric = a, a.Image.filters.BlendImage.prototype.mode = "mask", a.Image.fromURL(
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NgYGD4DwABBAEAcCBlCwAAAABJRU5ErkJggg==",
     function(t) {
-      s.Image.filters.BlendImage.prototype.image = t;
+      a.Image.filters.BlendImage.prototype.image = t;
     }
-  ), s.Image.filters.BlendImage.prototype.fragmentSource.mask = `
+  ), a.Image.filters.BlendImage.prototype.fragmentSource.mask = `
             precision highp float;
             uniform sampler2D uTexture;
             uniform sampler2D uImage;
@@ -257,7 +257,7 @@ const rt = function({ default: { fabric: s } }) {
                 vec4 color2 = texture2D(uImage, vTexCoord2);
                 color.a *= color2.a;
                 gl_FragColor = color;
-            }`, s.MaskBrush = s.util.createClass(s.PencilBrush, {
+            }`, a.MaskBrush = a.util.createClass(a.PencilBrush, {
     initialize: function(t) {
       this.canvas = t.canvas, this.width = t.width, this.target = t.target, this.shadow = t.shadow, this.blur = t.blur, this.color = t.color, this.targetMaskFilter = t.targetMaskFilter, this.mode = t.mode ? t.mode : "source-out", this._points = [];
     },
@@ -273,14 +273,14 @@ const rt = function({ default: { fabric: s } }) {
         this.canvas.requestRenderAll();
         return;
       }
-      var a = this.target.getBoundingRect(), n = this.canvas.contextTop.getImageData(
-        a.left,
-        a.top,
-        a.width,
-        a.height
+      var s = this.target.getBoundingRect(), n = this.canvas.contextTop.getImageData(
+        s.left,
+        s.top,
+        s.width,
+        s.height
       ), r = document.createElement("canvas"), l = r.getContext("2d");
-      if (r.width = a.width, r.height = a.height, !t.targetMaskFilter.image) {
-        l.fillRect(0, 0, r.width, r.height), s.Image.fromURL(r.toDataURL(), function(o) {
+      if (r.width = s.width, r.height = s.height, !t.targetMaskFilter.image) {
+        l.fillRect(0, 0, r.width, r.height), a.Image.fromURL(r.toDataURL(), function(o) {
           t.targetMaskFilter.image = o, t.target.applyFilters(), t.canvas.requestRenderAll(), t._finalizeAndAddPath();
         });
         return;
@@ -291,27 +291,24 @@ const rt = function({ default: { fabric: s } }) {
         0,
         r.width,
         r.height
-      )), s.Image.fromURL(r.toDataURL(), function(o) {
+      )), a.Image.fromURL(r.toDataURL(), function(o) {
         t.targetMaskFilter.image = o, t.target.applyFilters(), t.canvas.requestRenderAll();
       }), this.canvas.clearContext(this.canvas.contextTop), this.canvas.requestRenderAll(), this._resetShadow();
     }
   });
-}, ot = {
+}, rt = {
   editorMode: "mount"
   // 'standalone' | 'mount'
 };
-async function ct(s, t) {
-  if ((await fetch(s, {
+async function ot(a, t) {
+  if ((await fetch(a, {
     method: "PUT",
     headers: { "Content-Type": "image/jpeg" },
     body: t
   })).status !== 200)
     throw "Failed to upload to s3!!";
 }
-function _() {
-  return `Bearer ${window.adobeIMS.getAccessToken().token}`;
-}
-class St {
+class yt {
   constructor(t, e = {}) {
     c(this, "loaderEnable", () => {
       this.container.querySelector(".lds-ring").classList.remove("hide");
@@ -333,47 +330,47 @@ class St {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: _(),
+            Authorization: this.getBearerToken(),
             "x-api-key": "leo"
           }
-        }, a = await fetch("https://assistant-int.adobe.io/api/v1/asset", i), { id: n, href: r } = await a.json();
+        }, s = await fetch("https://assistant-int.adobe.io/api/v1/asset", i), { id: n, href: r } = await s.json();
         let l = atob(this.uploadedUrl.split(",")[1]), o = [];
         for (let g = 0; g < l.length; g++)
           o.push(l.charCodeAt(g));
         let p = new Blob([new Uint8Array(o)], { type: "image/jpeg" });
-        await ct(r, p);
+        await ot(r, p);
         const C = {
           method: "POST",
           headers: {
-            Authorization: _(),
+            Authorization: this.getBearerToken(),
             "Content-Type": "application/json",
             "x-api-key": "leo"
           },
           body: `{"surfaceId":"Unity","assets":[{"id": "${n}"}]}`
-        }, E = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", C), { outputUrl: k } = await E.json();
-        t = k;
+        }, k = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", C), { outputUrl: L } = await k.json();
+        t = L;
       } else {
         const i = this.container.querySelector(":scope > img").src;
         if (!i.includes("data:image/jpeg")) {
-          const a = new URL(i), n = {
+          const s = new URL(i), n = {
             method: "POST",
             headers: {
-              Authorization: _(),
+              Authorization: this.getBearerToken(),
               "Content-Type": "application/json",
               "x-api-key": "leo"
             },
-            body: `{"surfaceId":"Unity","assets":[{"href": "${a}"}]}`
+            body: `{"surfaceId":"Unity","assets":[{"href": "${s}"}]}`
           }, r = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", n), { outputUrl: l } = await r.json();
           t = l;
         }
       }
       fabric.Image.fromURL(t, (i) => {
-        const a = {
+        const s = {
           width: i.width,
           height: i.height,
           selectable: !1
         }, n = Math.min(this.width / i.width, this.height / i.height);
-        a.left = (this.width - i.width * n) / 2, a.top = (this.height - i.height * n) / 2, a.scaleX = n, a.scaleY = n, i.set(a), this.frontImage = i;
+        s.left = (this.width - i.width * n) / 2, s.top = (this.height - i.height * n) / 2, s.scaleX = n, s.scaleY = n, i.set(s), this.frontImage = i;
         const r = this.canvas.getObjects();
         for (let l = 0; l < r.length; l++)
           this.canvas.remove(r[l]);
@@ -381,14 +378,14 @@ class St {
       });
     });
     c(this, "applyMask", () => {
-      this.fabric && rt(this.fabric);
+      this.fabric && nt(this.fabric);
       const t = this.fabric.default.fabric, e = this.canvas;
       e.isDrawingMode = !0, e.freeDrawingBrush = new t.PencilBrush(e), e.freeDrawingBrush.color = "black", e.freeDrawingBrush.width = 20, setTimeout(() => {
         const i = document.createElement("canvas");
         i.width = e.width, i.height = e.height;
-        const a = i.getContext("2d");
+        const s = i.getContext("2d");
         e.getObjects().forEach((r) => {
-          r.type === "path" && r.render(a);
+          r.type === "path" && r.render(s);
         });
         const n = i.toDataURL("image/png");
         t.Image.fromURL(n, (r) => {
@@ -407,8 +404,8 @@ class St {
           width: e.width,
           height: e.height,
           selectable: !1
-        }, a = Math.min(this.width / e.width, this.height / e.height);
-        i.left = (this.width - e.width * a) / 2, i.top = (this.height - e.height * a) / 2, i.scaleX = a, i.scaleY = a, e.set(i), this.bgImage && this.canvas.remove(this.bgImage), this.bgImage = e, this.canvas.sendBackwards(e);
+        }, s = Math.min(this.width / e.width, this.height / e.height);
+        i.left = (this.width - e.width * s) / 2, i.top = (this.height - e.height * s) / 2, i.scaleX = s, i.scaleY = s, e.set(i), this.bgImage && this.canvas.remove(this.bgImage), this.bgImage = e, this.canvas.sendBackwards(e);
       });
     });
     c(this, "changeHueFilter", (t) => {
@@ -419,14 +416,14 @@ class St {
     });
     c(this, "upload", async () => {
       await this.ondemandLoad();
-      const t = await nt();
+      const t = await at();
       this.uploadedUrl = t, fabric.Image.fromURL(t, (e) => {
         const i = {
           width: e.width,
           height: e.height,
           selectable: !1
-        }, a = Math.min(this.width / e.width, this.height / e.height);
-        i.left = (this.width - e.width * a) / 2, i.top = (this.height - e.height * a) / 2, i.scaleX = a, i.scaleY = a, e.set(i);
+        }, s = Math.min(this.width / e.width, this.height / e.height);
+        i.left = (this.width - e.width * s) / 2, i.top = (this.height - e.height * s) / 2, i.scaleX = s, i.scaleY = s, e.set(i);
         const n = this.canvas.getObjects();
         for (let r = 0; r < n.length; r++)
           this.canvas.remove(n[r]);
@@ -434,20 +431,20 @@ class St {
       });
     });
     c(this, "ondemandLoad", async () => {
-      this.canvasLoaded || (this.fabric = await import("./fabric-T-x1IxqJ.js").then((t) => t.f), this.filters = W.init(), this.loadCanvas(), this.state = new it(this.canvas, this.config), this.controlManager.canvasLoaded.forward());
+      this.canvasLoaded || (this.fabric = await import("./fabric-T-x1IxqJ.js").then((t) => t.f), this.filters = j.init(), this.loadCanvas(), this.state = new et(this.canvas, this.config), this.controlManager.canvasLoaded.forward());
     });
-    this.element = t, this.img = null, this.canvasLoaded = !1, this.canvas = null, this.container = this.checkMountType(t), this.config = { ...ot, ...e }, this.onChanged = new u(), this.height = this.container.clientHeight, this.width = this.container.clientWidth, this.$ = (i) => this.container.querySelector(i), this.filters = null, this.controlManager = new st(this.config.workflow), this.loadEditor();
+    this.element = t, this.img = null, this.canvasLoaded = !1, this.canvas = null, this.container = this.checkMountType(t), this.config = { ...rt, ...e }, this.onChanged = new u(), this.height = this.container.clientHeight, this.width = this.container.clientWidth, this.$ = (i) => this.container.querySelector(i), this.filters = null, this.token = this.config.token || null, this.controlManager = new st(this.config.workflow), this.loadEditor();
   }
   async loadEditor() {
     this.loadControls();
   }
   checkMountType(t) {
     if (t.tagName === "IMG") {
-      const e = t.clientHeight, i = t.clientWidth, a = document.createElement("div");
-      return a.style.height = `${e}px`, a.style.width = `${i}px`, H(t) && (a.style.position = "relative"), t.parentNode.insertBefore(a, t), a.appendChild(t), this.img = img, a;
+      const e = t.clientHeight, i = t.clientWidth, s = document.createElement("div");
+      return s.style.height = `${e}px`, s.style.width = `${i}px`, H(t) && (s.style.position = "relative"), t.parentNode.insertBefore(s, t), s.appendChild(t), this.img = img, s;
     } else if (t.tagName === "PICTURE") {
-      const e = t.querySelector("img"), i = e.clientHeight, a = e.clientWidth, n = document.createElement("div");
-      return n.style.height = `${i}px`, n.style.width = `${a}px`, n.classList.add("editor-wrapper"), H(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), this.img = e, n;
+      const e = t.querySelector("img"), i = e.clientHeight, s = e.clientWidth, n = document.createElement("div");
+      return n.style.height = `${i}px`, n.style.width = `${s}px`, n.classList.add("editor-wrapper"), H(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), this.img = e, n;
     } else
       return H(t) && (t.style.position = "relative"), t.insertAdjacentHTML("beforeend", '<div class="lds-ring hide"><div></div><div></div><div></div><div></div></div>'), this.img = t.querySelector("img"), t;
   }
@@ -457,7 +454,7 @@ class St {
   loadCanvas() {
     const t = document.createElement("div");
     t.classList.add("canvas-placeholder"), this.container.appendChild(t);
-    const e = et(this.height, this.width, "canvas");
+    const e = tt(this.height, this.width, "canvas");
     this.$(".canvas-placeholder").appendChild(e), window.canvas = this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: !1,
       height: this.height,
@@ -465,8 +462,11 @@ class St {
       // backgroundImage: ""
     }), this.canvasLoaded = !0, fabric.Object.prototype.transparentCorners = !1;
   }
+  getBearerToken() {
+    return this.token ? this.token.startsWith("Bearer") ? this.token : `Bearer ${this.token}` : `Bearer ${window.adobeIMS.getAccessToken().token}`;
+  }
 }
-const lt = `<div class="menu-bar">
+const ct = `<div class="menu-bar">
 <button id="vector-select">
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -620,12 +620,12 @@ const lt = `<div class="menu-bar">
 </div>
 <input type="color" id="vector-fill" />
 </div>`;
-function j(s) {
-  return window.getComputedStyle(s).getPropertyValue("position") === "static";
+function _(a) {
+  return window.getComputedStyle(a).getPropertyValue("position") === "static";
 }
-const dt = (s, t, e) => {
+const lt = (a, t, e) => {
   t.split(" ").forEach(
-    (i) => s.addEventListener(i, e, !1)
+    (i) => a.addEventListener(i, e, !1)
   );
 }, ht = {
   initFill: { color: "FF0000", opacity: 1 },
@@ -640,32 +640,32 @@ const dt = (s, t, e) => {
   // 'standalone' | 'mount'
   sourceLoad: !0
 };
-class xt {
+class St {
   checkMountType(t) {
     if (t.tagName === "IMG") {
       this.src = t.src;
-      const e = t.clientHeight, i = t.clientWidth, a = document.createElement("div");
-      return a.style.height = `${e}px`, a.style.width = `${i}px`, a.classList.add("editor-wrapper"), j(t) && (a.style.position = "relative"), t.parentNode.insertBefore(a, t), a.appendChild(t), a;
+      const e = t.clientHeight, i = t.clientWidth, s = document.createElement("div");
+      return s.style.height = `${e}px`, s.style.width = `${i}px`, s.classList.add("editor-wrapper"), _(t) && (s.style.position = "relative"), t.parentNode.insertBefore(s, t), s.appendChild(t), s;
     } else if (t.tagName === "PICTURE") {
       const e = t.querySelector("img");
       this.src = e.src;
-      const i = e.clientHeight, a = e.clientWidth, n = document.createElement("div");
-      return n.style.height = `${i}px`, n.style.width = `${a}px`, n.classList.add("editor-wrapper"), j(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), n;
+      const i = e.clientHeight, s = e.clientWidth, n = document.createElement("div");
+      return n.style.height = `${i}px`, n.style.width = `${s}px`, n.classList.add("editor-wrapper"), _(t) && (n.style.position = "relative"), t.parentNode.insertBefore(n, t), n.appendChild(t), n;
     } else {
-      const e = j(t);
+      const e = _(t);
       return div.classList.add("editor-wrapper"), e && (t.style.position = "relative"), t;
     }
   }
   constructor(t, e = {}) {
-    this.element = t, this.src = null, this.editorWrapper = this.checkMountType(t), this.height = this.editorWrapper.clientHeight, this.width = this.editorWrapper.clientWidth, this.config = { ...ht, ...e, dimensions: [this.width, this.height] }, this.editorWrapper.insertAdjacentHTML("beforeend", lt), this.config.editorMode === "standalone" && this.bindEvents();
+    this.element = t, this.src = null, this.editorWrapper = this.checkMountType(t), this.height = this.editorWrapper.clientHeight, this.width = this.editorWrapper.clientWidth, this.config = { ...ht, ...e, dimensions: [this.width, this.height] }, this.editorWrapper.insertAdjacentHTML("beforeend", ct), this.config.editorMode === "standalone" && this.bindEvents();
   }
   bindEvents() {
     window.addEventListener("keydown", (t) => this.onKeyDownHandler(t)), this.editorWrapper.querySelector("#import-btn").addEventListener("change", (t) => {
       const e = t.target.files[0];
       if (e && e.type === "image/svg+xml") {
         const i = new FileReader();
-        i.onload = (a) => {
-          const n = a.target.result;
+        i.onload = (s) => {
+          const n = s.target.result;
           this.canvas.clear(), this.canvas.setSvgString(n);
           const r = this.editorWrapper, l = getComputedStyle(r, null).height.replace("px", ""), o = getComputedStyle(r, null).width.replace("px", "");
           this.canvas.setCurrentZoom(l / this.canvas.contentH), this.canvas.updateCanvas(o, l);
@@ -685,9 +685,9 @@ class xt {
         });
       }, this.canvas.textActions.setInputElem(this.hiddenTextTag), this.bindEvents(), this.config.sourceLoad === !0 && this.src !== null && window.fetch(this.src).then((e) => e.text()).then((e) => {
         this.canvas.setSvgString(e), this.editorWrapper;
-        const i = this.editorWrapper.clientHeight, a = this.editorWrapper.clientWidth;
-        this.canvas.setCurrentZoom(i / this.canvas.contentH), this.canvas.updateCanvas(a, i);
-      }), this.canvas.setMode("select"), dt(this.hiddenTextTag, "keyup input", (e) => {
+        const i = this.editorWrapper.clientHeight, s = this.editorWrapper.clientWidth;
+        this.canvas.setCurrentZoom(i / this.canvas.contentH), this.canvas.updateCanvas(s, i);
+      }), this.canvas.setMode("select"), lt(this.hiddenTextTag, "keyup input", (e) => {
         this.canvas.setTextContent(e.currentTarget.value);
       });
     }), this.editorWrapper.querySelector("#vector-rect").addEventListener("click", () => this.canvas.setMode("rect")), this.editorWrapper.querySelector("#vector-line").addEventListener("click", () => this.canvas.setMode("line")), this.editorWrapper.querySelector("#vector-path").addEventListener("click", () => this.canvas.setMode("path")), this.editorWrapper.querySelector("#vector-fhpath").addEventListener("click", () => this.canvas.setMode("fhpath")), this.editorWrapper.querySelector("#vector-fill").addEventListener("input", (t) => {
@@ -703,7 +703,7 @@ class xt {
     }
   }
 }
-const pt = `
+const dt = `
 <div id="rangePack" class="range_pack"></div>
 <div class="menu-bar">
 <div class="upload-btn-wrapper-video">
@@ -755,57 +755,57 @@ const pt = `
     <input id="import-btn-video" type="file" name="myfile" />
   </button>
 </div>
-</div>`, m = (s, t = !0) => {
-  s = parseFloat(s);
-  let e = Math.floor(s / 3600), i = Math.floor((s - e * 3600) / 60), a = s - e * 3600 - i * 60;
-  e < 10 && (e = "0" + e), i < 10 && (i = "0" + i), a < 10 && (a = "0" + a);
-  let n = /\..*$/, r = String(a).match(n);
-  return e + ":" + i + ":" + String(a).replace(n, "") + (t ? r ? r[0] : ".000" : "");
-}, F = async (s) => new Promise((t, e) => {
+</div>`, m = (a, t = !0) => {
+  a = parseFloat(a);
+  let e = Math.floor(a / 3600), i = Math.floor((a - e * 3600) / 60), s = a - e * 3600 - i * 60;
+  e < 10 && (e = "0" + e), i < 10 && (i = "0" + i), s < 10 && (s = "0" + s);
+  let n = /\..*$/, r = String(s).match(n);
+  return e + ":" + i + ":" + String(s).replace(n, "") + (t ? r ? r[0] : ".000" : "");
+}, F = async (a) => new Promise((t, e) => {
   const i = new FileReader();
   i.onload = () => {
     t(i.result);
-  }, i.onerror = e, i.readAsDataURL(s);
-}), b = (s, t, ...e) => {
-  const i = document.createElement(s);
-  for (let a in t)
-    if (a.startsWith("on") && i.addEventListener(a.substring(2).toLowerCase(), t[a]), a.startsWith("data-")) {
-      const n = a.split("-");
-      i.dataset[n[1]] = t[a];
+  }, i.onerror = e, i.readAsDataURL(a);
+}), b = (a, t, ...e) => {
+  const i = document.createElement(a);
+  for (let s in t)
+    if (s.startsWith("on") && i.addEventListener(s.substring(2).toLowerCase(), t[s]), s.startsWith("data-")) {
+      const n = s.split("-");
+      i.dataset[n[1]] = t[s];
     } else
-      a === "class" ? i.classList.add(t[a]) : a === "value" ? i.value = t[a] : i[a] = t[a];
-  return e.forEach((a) => {
-    typeof a == "string" ? i.appendChild(document.createTextNode(a)) : i.appendChild(a);
+      s === "class" ? i.classList.add(t[s]) : s === "value" ? i.value = t[s] : i[s] = t[s];
+  return e.forEach((s) => {
+    typeof s == "string" ? i.appendChild(document.createTextNode(s)) : i.appendChild(s);
   }), i;
 };
-function y(s) {
-  let t = s;
-  return [() => t, (a) => {
-    t = a;
+function y(a) {
+  let t = a;
+  return [() => t, (s) => {
+    t = s;
   }];
 }
-const G = (s) => new Promise((t, e) => {
+const O = (a) => new Promise((t, e) => {
   const i = document.createElement("script");
-  i.src = s, i.onload = t, i.onerror = () => e(new Error(`Script load error: ${s}`)), document.head.appendChild(i);
+  i.src = a, i.onload = t, i.onerror = () => e(new Error(`Script load error: ${a}`)), document.head.appendChild(i);
 });
-function gt(s) {
-  return window.getComputedStyle(s).getPropertyValue("position") === "static";
+function pt(a) {
+  return window.getComputedStyle(a).getPropertyValue("position") === "static";
 }
-async function ut(s) {
-  return await (await fetch(s)).blob();
+async function gt(a) {
+  return await (await fetch(a)).blob();
 }
 let T = 100;
-function vt({
-  thumbNails: s,
+function ut({
+  thumbNails: a,
   rEnd: t,
   rStart: e,
   handleUpdaterStart: i,
-  handleUpdaterEnd: a,
+  handleUpdaterEnd: s,
   loading: n,
   videoMeta: r,
   handleTrim: l
 }) {
-  if (s.length === 0 && !n)
+  if (a.length === 0 && !n)
     return null;
   if (n) {
     const g = b("h2", {}, "Processing thumbnails.....");
@@ -814,10 +814,10 @@ function vt({
   const o = document.getElementById("rangePack");
   o.innerHTML = "";
   const p = b("div", { class: "image_box" });
-  s.forEach((g, M) => {
+  a.forEach((g, B) => {
     const R = b("img", {
       src: g,
-      alt: `sample_video_thumbnail_${M}`
+      alt: `sample_video_thumbnail_${B}`
     });
     p.appendChild(R);
   });
@@ -834,64 +834,64 @@ function vt({
     )
   });
   for (let g = 0; g < 2; g++) {
-    const M = b("span", { class: "clip_box_des" });
-    C.appendChild(M);
+    const B = b("span", { class: "clip_box_des" });
+    C.appendChild(B);
   }
   p.appendChild(C);
-  const E = b("input", {
+  const k = b("input", {
     class: "range",
     type: "range",
     min: 0,
     max: T,
     onInput: i,
     value: e
-  }), k = b("input", {
+  }), L = b("input", {
     class: "range",
     type: "range",
     min: 0,
     max: T,
-    onInput: a,
+    onInput: s,
     value: t
   });
-  p.appendChild(E), p.appendChild(k), o.appendChild(p);
+  p.appendChild(k), p.appendChild(L), o.appendChild(p);
 }
-let N = 100, I = null, z = null, f = null;
-const ft = {
+let G = 100, I = null, N = null, f = null;
+const vt = {
   load: "lazy"
 };
-async function mt(s = "") {
-  await G(`${s}/assets/ffmpeg/package/dist/umd/ffmpeg.js`), await G(`${s}/assets/util/package/dist/umd/index.js`), I = FFmpegUtil.fetchFile, z = FFmpegWASM.FFmpeg, f = new z(), f.on("log", ({ message: t }) => {
+async function ft(a = "") {
+  await O(`${a}/assets/ffmpeg/package/dist/umd/ffmpeg.js`), await O(`${a}/assets/util/package/dist/umd/index.js`), I = FFmpegUtil.fetchFile, N = FFmpegWASM.FFmpeg, f = new N(), f.on("log", ({ message: t }) => {
     console.log(t);
   }), f.on("progress", ({ progress: t }) => {
     console.log(`${t * 100} %`);
   }), await f.load({
-    coreURL: `${s}/assets/core/package/dist/umd/ffmpeg-core.js`
+    coreURL: `${a}/assets/core/package/dist/umd/ffmpeg-core.js`
   });
 }
-async function wt(s, t) {
-  t = { ...ft, ...t };
-  const e = s.clientHeight, i = s.clientWidth > window.innerWidth ? window.innerWidth : s.clientWidth, a = document.createElement("div");
-  a.style.height = `${e}px`, a.style.width = `${i}px`, a.classList.add("editor-wrapper"), gt(s) && (a.style.position = "relative"), s.parentNode.insertBefore(a, s), a.appendChild(s);
-  const [r, l] = y(null), [o, p] = y({}), [C, E] = y([]), [k, g] = y(!1), [M, R] = y(null), [bt, P] = y(!1), [L, Z] = y(0), [B, X] = y(10);
-  s.insertAdjacentHTML("afterend", pt), document.querySelector("#import-btn-video").addEventListener("change", Y), s.addEventListener("loadedmetadata", J);
-  async function Y({ target: { files: d } }) {
-    const h = d[0];
-    s.src = await F(h), p(h), E(await F(h));
+async function mt(a, t) {
+  t = { ...vt, ...t };
+  const e = a.clientHeight, i = a.clientWidth > window.innerWidth ? window.innerWidth : a.clientWidth, s = document.createElement("div");
+  s.style.height = `${e}px`, s.style.width = `${i}px`, s.classList.add("editor-wrapper"), pt(a) && (s.style.position = "relative"), a.parentNode.insertBefore(s, a), s.appendChild(a);
+  const [r, l] = y(null), [o, p] = y({}), [C, k] = y([]), [L, g] = y(!1), [B, R] = y(null), [wt, W] = y(!1), [E, z] = y(0), [M, Z] = y(10);
+  a.insertAdjacentHTML("afterend", dt), document.querySelector("#import-btn-video").addEventListener("change", X), a.addEventListener("loadedmetadata", Y);
+  async function X({ target: { files: h } }) {
+    const d = h[0];
+    a.src = await F(d), p(d), k(await F(d));
   }
-  document.querySelector(".video-trim").addEventListener("click", () => D()), document.querySelector(".video-frames").addEventListener("click", async () => {
-    const d = s.querySelector("source").src, h = await ut(d), v = "input.mp4";
-    await f.writeFile(v, await I(h));
+  document.querySelector(".video-trim").addEventListener("click", () => P()), document.querySelector(".video-frames").addEventListener("click", async () => {
+    const h = a.querySelector("source").src, d = await gt(h), v = "input.mp4";
+    await f.writeFile(v, await I(d));
     const w = await f.readFile(v);
-    p(w), O(s);
+    p(w), D(a);
   });
-  async function D() {
-    P(!0);
-    let d = (L() / 100 * r().duration).toFixed(2), h = (B() / 100 * r().duration - d).toFixed(2);
+  async function P() {
+    W(!0);
+    let h = (E() / 100 * r().duration).toFixed(2), d = (M() / 100 * r().duration - h).toFixed(2);
     console.log(
-      d,
       h,
-      m(d),
-      m(h)
+      d,
+      m(h),
+      m(d)
     );
     try {
       await f.writeFile(
@@ -899,11 +899,11 @@ async function wt(s, t) {
         await I(o())
       ), await f.exec([
         "-ss",
-        m(d),
+        m(h),
         "-i",
         o().name,
         "-t",
-        m(h),
+        m(d),
         "-c",
         "copy",
         "ping.mp4"
@@ -915,46 +915,46 @@ async function wt(s, t) {
     } catch (v) {
       console.log(v);
     } finally {
-      P(!1);
+      W(!1);
     }
   }
-  async function J(d) {
-    const h = d.target;
-    a.style.width = `${h.videoWidth}px`, a.style.height = `${h.videoHeight}px`, O(h);
+  async function Y(h) {
+    const d = h.target;
+    s.style.width = `${d.videoWidth}px`, s.style.height = `${d.videoHeight}px`, D(d);
   }
-  async function O(d) {
-    const h = (U) => (V) => {
+  async function D(h) {
+    const d = (U) => (V) => {
       U(V.target.value);
       const q = document.querySelector(".clip_box");
-      q.style = `width: calc(${B() - L()}%); left: ${L()}%;`, q.dataset.start = m(
-        `${L() / N * x.duration}`,
+      q.style = `width: calc(${M() - E()}%); left: ${E()}%;`, q.dataset.start = m(
+        `${E() / G * x.duration}`,
         !1
       ), q.dataset.end = m(
-        `${B() / N * x.duration}`,
+        `${M() / G * x.duration}`,
         !1
       );
     }, v = {
       name: o().name,
-      duration: d.duration,
-      videoWidth: d.videoWidth,
-      videoHeight: d.videoHeight
+      duration: h.duration,
+      videoWidth: h.videoWidth,
+      videoHeight: h.videoHeight
     };
     l(v);
-    const w = await K(v), A = h(Z), S = h(X), $ = !1, x = { duration: 60 };
-    vt({
+    const w = await J(v), A = d(z), S = d(Z), $ = !1, x = { duration: 60 };
+    ut({
       thumbNails: w,
-      rEnd: B(),
-      rStart: L(),
+      rEnd: M(),
+      rStart: E(),
       handleUpdaterStart: A,
       handleUpdaterEnd: S,
       loading: $,
       videoMeta: x,
-      handleTrim: D
+      handleTrim: P
     });
   }
-  const K = async ({ duration: d }) => {
+  const J = async ({ duration: h }) => {
     g(!0);
-    let h = 15, v = d < h ? d : 15, w = d === h ? 1 : d / v;
+    let d = 15, v = h < d ? h : 15, w = h === d ? 1 : h / v;
     const A = [];
     await f.writeFile(
       o().name,
@@ -983,28 +983,28 @@ async function wt(s, t) {
     }
     return g(!1), A;
   };
-  await mt(t.basePath);
+  await ft(t.basePath);
 }
-class Ct {
+class xt {
   constructor(t, e) {
-    wt(t, e);
+    mt(t, e);
   }
 }
-function Et(s, t) {
+function Ct(a, t) {
   const e = [
-    ...s.querySelectorAll("li:not(ul li ul li)")
-  ].map((a) => {
+    ...a.querySelectorAll("li:not(ul li ul li)")
+  ].map((s) => {
     var o;
-    const n = (o = a.querySelector(".icon")) == null ? void 0 : o.classList.value, r = {}, l = n == null ? void 0 : n.split("-")[1];
-    return r.type = l, a.innerHTML.includes("noInitial") && (r.noInitial = !0), a.querySelectorAll("li img").length > 0 && (r.experience = "mock", r.options = [...a.querySelectorAll("li img")].map(
+    const n = (o = s.querySelector(".icon")) == null ? void 0 : o.classList.value, r = {}, l = n == null ? void 0 : n.split("-")[1];
+    return r.type = l, s.innerHTML.includes("noInitial") && (r.noInitial = !0), s.querySelectorAll("li img").length > 0 && (r.experience = "mock", r.options = [...s.querySelectorAll("li img")].map(
       (p) => `${t}${p == null ? void 0 : p.getAttribute("src")}`
     )), r;
   });
-  return e.find((a) => a.type === "changebg") && (e[0].next = "changebg"), e;
+  return e.find((s) => s.type === "changebg") && (e[0].next = "changebg"), e;
 }
 export {
-  St as Editor,
-  xt as VectorEditor,
-  Ct as VideoEditor,
-  Et as getWorkflow
+  yt as Editor,
+  St as VectorEditor,
+  xt as VideoEditor,
+  Ct as getWorkflow
 };

@@ -333,7 +333,7 @@ class yt {
             Authorization: this.getBearerToken(),
             "x-api-key": "leo"
           }
-        }, s = await fetch("https://assistant-int.adobe.io/api/v1/asset", i), { id: n, href: r } = await s.json();
+        }, s = await fetch("https://unity-stage.adobe.io/api/v1/asset", i), { id: n, href: r } = await s.json();
         let l = atob(this.uploadedUrl.split(",")[1]), o = [];
         for (let g = 0; g < l.length; g++)
           o.push(l.charCodeAt(g));
@@ -347,7 +347,7 @@ class yt {
             "x-api-key": "leo"
           },
           body: `{"surfaceId":"Unity","assets":[{"id": "${n}"}]}`
-        }, k = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", C), { outputUrl: L } = await k.json();
+        }, k = await fetch("https://unity-stage.adobe.io/api/v1/providers/PhotoshopRemoveBackground", C), { outputUrl: L } = await k.json();
         t = L;
       } else {
         const i = this.container.querySelector(":scope > img").src;
@@ -360,7 +360,7 @@ class yt {
               "x-api-key": "leo"
             },
             body: `{"surfaceId":"Unity","assets":[{"href": "${s}"}]}`
-          }, r = await fetch("https://assistant-int.adobe.io/api/v1/providers/PhotoshopRemoveBackground", n), { outputUrl: l } = await r.json();
+          }, r = await fetch("https://unity-stage.adobe.io/api/v1/providers/PhotoshopRemoveBackground", n), { outputUrl: l } = await r.json();
           t = l;
         }
       }

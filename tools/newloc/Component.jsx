@@ -1,4 +1,4 @@
-import RadioButton, { RadioGroup } from '@milostudio/components/radioButton';
+import RadioButton, { RadioGroup } from '/components/radioButton';
 
 const Component = ({name}) => {
   return (

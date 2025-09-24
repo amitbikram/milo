@@ -1920,6 +1920,7 @@ async function resolveInlineFrags(section) {
 
 async function processSection(section, config, isDoc) {
   if(section.el.classList.contains('prerender')) {
+    if (isDoc) await loadPostLCP(config);
     return [];
   }
   await resolveInlineFrags(section);

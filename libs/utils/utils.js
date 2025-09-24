@@ -301,6 +301,85 @@ if (document.readyState === 'loading') {
 }
 */
 
+function generateUUIDv4Manual() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+window.artemis = window.artemis || {};
+
+window.artemis.execute = function(executeFn, config) {
+
+  const err = new Error();
+  const stackLines = err.stack.split('\n');
+
+  // Find the caller line (the logic remains the same).
+  // The first line is the error message, the second is the current location,
+  // so the caller is typically the third line.
+  const callerLine = stackLines[2]; 
+
+  if (callerLine) {
+    // Parse the line to get the info you need.
+    const match = callerLine.match(/\((.*?):(\d+):\d+\)|@(.*):(\d+):\d+/);
+    if (match) {
+      const filePath = match[1] || match[3];
+      const lineNumber = match[2] || match[4];
+      console.log(`✨ 'hydrate' was called from line: ${lineNumber} in ${filePath}`);
+    }
+  }
+  // Destructure config for clarity
+  const { payload, element } = config;
+  const id = lineNumber;
+
+  const task = {
+    id,
+    elements: {},
+    data: {},
+  };
+
+  // Process the payload object to categorize items
+  Object.entries(payload||{}).forEach(([key, value]) => {
+    // Attempt to get hydration ID(s) for the value
+    const hydrationIdInfo = ensureHydrateId(value);
+
+    if (hydrationIdInfo !== null) {
+      // If ensureHydrateId returned an ID string or an array of IDs, treat as element(s)
+      task.elements[key] = hydrationIdInfo;
+    } else if (value !== null && !(value instanceof HTMLElement) && typeof value?.length !== 'number'){
+      // If it wasn't recognized as an element/list by ensureHydrateId,
+      // and it's not null/HTMLElement/array-like, treat it as data.
+      // (We re-check null/HTMLElement/length here for safety, though ensureHydrateId handles most)
+      try {
+        // Attempt to stringify/parse to ensure valid JSON & deep clone primitive/plain objects/arrays
+        task.data[key] = JSON.parse(JSON.stringify(value));
+      } catch (e) {
+        console.warn(`Hydration (id: ${id}): Could not serialize data for key "${key}". Skipping. Error:`, e);
+        // Optionally store a placeholder like null or skip the key
+        // task.data[key] = null;
+      }
+    }else if (value !== null && !(value instanceof HTMLElement) && typeof value === "string"){
+      // If it wasn't recognized as an element/list by ensureHydrateId,
+      // and it's not null/HTMLElement/array-like, treat it as data.
+      // (We re-check null/HTMLElement/length here for safety, though ensureHydrateId handles most)
+      try {
+        // Attempt to stringify/parse to ensure valid JSON & deep clone primitive/plain objects/arrays
+        task.data[key] = value;
+      } catch (e) {
+        console.warn(`Hydration (id: ${id}): Could not serialize data for key "${key}". Skipping. Error:`, e);
+        // Optionally store a placeholder like null or skip the key
+        // task.data[key] = null;
+      }
+    }
+    // If value is null or an empty list, ensureHydrateId returns null,
+    // and it won't match the 'else if' either, so it's correctly skipped.
+  });
+  executeFn(payload);
+  element.dataset.artemis = JSON.stringify(task);
+};
+
 window.hydrate = function(config) {
   // Destructure config for clarity
   const { id, payload } = config;
@@ -1372,6 +1451,14 @@ export function filterDuplicatedLinkBlocks(blocks) {
 }
 
 function decorateSection(section, idx) {
+  if(section.classList.contains('prerender')) {
+    return {
+      blocks: [],
+      el: section,
+      idx,
+      preloadLinks: [],
+    };
+  }
   let links = decorateLinks(section);
   decorateDefaults(section);
   const blocks = section.querySelectorAll(':scope > div[class]:not(.content)');
@@ -1832,6 +1919,9 @@ async function resolveInlineFrags(section) {
 }
 
 async function processSection(section, config, isDoc) {
+  if(section.el.classList.contains('prerender')) {
+    return [];
+  }
   await resolveInlineFrags(section);
   const firstSection = section.el.dataset.idx === '0';
   const stylePromises = firstSection ? preloadBlockResources(section.blocks) : [];

@@ -31,6 +31,44 @@ export function extractHandlers(outputPath, config) {
 
   // AST Analysis
   traverse(ast, {
+    // We're looking for a 'CallExpression', so we visit each one.
+    CallExpression(path) {
+      // 'path' is an object that represents the link between nodes.
+      const callee = path.get('callee');
+
+      // 🎯 Use a pattern matching helper to easily check the nested member expression.
+      // This is much cleaner than manually checking each part of `window.artemis.hydrate`.
+      const isTargetCallee = callee.matchesPattern('window.artemis.hydrate');
+
+      if (isTargetCallee) {
+        // We found a call to `window.artemis.hydrate`.
+        // Now, let's add an extra check to be sure the arguments match our pattern.
+        const args = path.get('arguments');
+
+        if (args[0].isFunctionExpression()) {
+          // console.log('✨ Found the target window.artemis.hydrate call!');
+          // console.log('Location:', path.node.loc.start);
+          
+          // You can now inspect or manipulate the node.
+          // For example, let's print the number of parameters in the callback function.
+          // const callbackParamsCount = args[0].node.params.length;
+          // console.log(`The callback function has ${callbackParamsCount} parameters.`);
+
+          // Stop traversing if you only need to find the first match
+          // path.stop(); 
+          hydrateBlocks.push({
+            code: args[0],
+            id: 801
+          });
+          path.traverse({
+            Identifier(innerPath) {
+                dependencies.add(innerPath.node.name);
+            },
+          });
+        }
+      }
+    },
+
     enter(path) {
       const comments = path.node.leadingComments || [];
       const hydrateComment = comments.find(c => 
@@ -48,7 +86,7 @@ export function extractHandlers(outputPath, config) {
           Identifier(innerPath) {
               dependencies.add(innerPath.node.name);
           },
-      });
+        });
       }
     },
     VariableDeclarator(path) {
